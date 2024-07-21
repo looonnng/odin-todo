@@ -1,3 +1,47 @@
-.test {
-  color: red;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Roboto', helvetica, sans-serif;
+}
+
+/* utility classes */
+.wrapper {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.row {
+  display: flex;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header & Nav */
+.header {
+  padding: 1rem;
+  border-bottom: 2px solid #e9ecee;
+}
+
+.nav__list {
+  list-style: none;
+}
+
+.nav__link {
+  text-decoration: none;
+}
+
+.nav-left,
+.nav-right {
+  gap: 1rem;
+}
+
+.nav-left {
+  margin-right: auto;
 }
