@@ -130,7 +130,12 @@ a:hover {
   padding: 0.5rem 1rem;
 }
 
-.create-btn:hover {
+.create-task-btn:hover {
   box-shadow: 0 1px 3px 0 rgba(60, 64, 67, 0.3),
+    0 4px 8px 3px rgba(60, 64, 67, 0.15);
+}
+
+.create-task-btn:active {
+  box-shadow: 0 1px 10px 0 rgba(60, 64, 67, 0.3),
     0 4px 8px 3px rgba(60, 64, 67, 0.15);
 }
