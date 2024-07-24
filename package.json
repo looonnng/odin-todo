@@ -21,6 +21,7 @@
     "webpack-dev-server": "^5.0.4"
   },
   "dependencies": {
+    "@material-design-icons/font": "^0.14.13",
     "date-fns": "^3.6.0"
   }
 }
