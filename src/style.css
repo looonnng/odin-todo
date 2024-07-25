@@ -10,6 +10,11 @@
   padding: 0;
 }
 
+html,
+body {
+  height: 100%;
+}
+
 body {
   font-family: 'Roboto', helvetica, sans-serif;
 }
@@ -34,9 +39,9 @@ span.size-20 {
   font-size: 20px;
   font-variation-settings: 'OPSZ' 20;
 }
-span.size-24 {
-  font-size: 24px;
-  font-variation-settings: 'OPSZ' 24;
+span.size-27 {
+  font-size: 27px;
+  font-variation-settings: 'OPSZ' 27;
 }
 span.size-40 {
   font-size: 40px;
@@ -84,7 +89,7 @@ a:hover {
 /* Header & Nav */
 .header {
   padding: 1rem 0.5rem;
-  border-bottom: 2px solid #e9ecee;
+  border-bottom: 1px solid #e9ecee;
 }
 
 .nav-left,
@@ -106,20 +111,65 @@ a:hover {
 }
 
 .nav__switch-page:first-of-type {
-  border-right: 1px solid black;
+  border-right: 1px solid #e9ecee;
 }
 
 /* Main */
 
 .main {
-  padding: 1rem 0.5rem;
+  background-color: #f8f9fa;
+  min-height: 100%;
+  /* padding: 1rem 0.5rem; */
 }
 
 .side-menu {
+  border-right: 1px solid #e9ecee;
+  min-width: 250px;
+  padding: 1rem 0.5rem;
   gap: 1rem;
 }
 
+.todos-wrapper {
+  min-width: 100%;
+  padding: 1rem 0.5rem;
+  align-items: flex-start; /* prevent default stretch*/
+  align-content: flex-start;
+  justify-content: center;
+}
+
+.todos-card {
+  background-color: #ffffff;
+  border-radius: 1rem;
+  min-width: 300px;
+  max-width: 680px;
+  flex: 1 1 auto;
+
+  padding: 1rem;
+}
+
+.todos-card__name {
+  font-size: 1.125rem;
+  flex: 1 1;
+  margin-bottom: 0.5rem;
+}
+
+.todos-card__add-task-btn {
+  color: rgb(26, 115, 232);
+  background-color: transparent;
+  border: none;
+  padding: 0.25rem 0;
+
+  & span {
+    margin-right: 0.5rem;
+  }
+}
+
+.todos-card__add-task-btn:hover {
+  opacity: 0.5;
+}
+
 .create-task-btn {
+  max-width: 150px;
   font-size: 1rem;
   background-color: #ffffff;
   border: none;
