@@ -156,19 +156,18 @@ a:active {
   flex-grow: 1;
   flex-shrink: 1;
   padding: 1rem;
+  gap: 1rem;
 }
 
 .todos-card__name {
   font-size: 1.125rem;
   flex: 1 1;
-  margin-bottom: 0.5rem;
 }
 
 .todos-card__add-task-btn {
   color: rgb(26, 115, 232);
   background-color: transparent;
   border: none;
-  padding: 0.25rem 0;
 
   & span {
     margin-right: 0.5rem;
@@ -203,4 +202,21 @@ a:active {
 .create-task-btn:active {
   box-shadow: 0 1px 10px 0 rgba(60, 64, 67, 0.3),
     0 4px 8px 3px rgba(60, 64, 67, 0.15);
+}
+
+/* Task section */
+.task {
+  gap: 0.5rem;
+}
+
+.done-btn-wrapper {
+  margin-right: auto;
+}
+
+.task__todo {
+  flex: 1;
+}
+
+.task__todo-text {
+  margin-right: auto;
 }
