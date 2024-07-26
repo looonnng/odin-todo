@@ -129,12 +129,18 @@ a:hover {
   gap: 1rem;
 }
 
-.todos-wrapper {
+.task-lists-container {
+  flex: 1 1 100%;
+}
+
+.task-lists-container__wrapper {
   min-width: 100%;
   padding: 1rem 0.5rem;
   align-items: flex-start; /* prevent default stretch*/
   align-content: flex-start;
   justify-content: center;
+  gap: 0.5rem;
+  height: 100%;
 }
 
 .todos-card {
@@ -142,8 +148,8 @@ a:hover {
   border-radius: 1rem;
   min-width: 300px;
   max-width: 680px;
-  flex: 1 1 auto;
-
+  flex-grow: 1;
+  flex-shrink: 1;
   padding: 1rem;
 }
 
