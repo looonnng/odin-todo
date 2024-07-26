@@ -104,7 +104,7 @@
       </aside>
       <div class="task-lists-container row">
         <div class="task-lists-container__wrapper row">
-          <div class="todos-card">
+          <div class="todos-card col">
             <div class="todos-card__top row">
               <div class="todos-card__name">lorem ipsum</div>
               <div class="todos-card__list-options-btn">
@@ -115,9 +115,9 @@
               <span class="material-symbols-outlined size-27">add_task</span>
               <p>Add a task</p>
             </button>
-            <div class="todos-card__tasks-wrapper"></div>
+            <div class="todos-card__tasks-container"></div>
           </div>
-          <div class="todos-card">
+          <div class="todos-card col">
             <div class="todos-card__top row">
               <div class="todos-card__name">lorem ipsum</div>
               <div class="todos-card__list-options-btn">
@@ -128,7 +128,23 @@
               <span class="material-symbols-outlined size-27">add_task</span>
               <p>Add a task</p>
             </button>
-            <div class="todos-card__tasks-wrapper"></div>
+            <div class="todos-card__tasks-container">
+              <div class="task row">
+                <div class="done-btn-wrapper">
+                  <button class="done-btn">Done</button>
+                </div>
+                <div class="task__todo row">
+                  <p class="task__todo-text">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  </p>
+                  <div class="task__todo-more-options">
+                    <span class="material-symbols-outlined size-20"
+                      >more_vert</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
