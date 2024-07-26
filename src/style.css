@@ -172,7 +172,12 @@ a:hover {
 }
 
 .todos-card__add-task-btn:hover {
+  opacity: 0.75;
+}
+
+.todos-card__add-task-btn:active {
   opacity: 0.5;
+
 }
 
 .create-task-btn {
