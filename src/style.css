@@ -178,7 +178,8 @@ a:active {
   opacity: 0.75;
 }
 
-.todos-card__add-task-btn:active {
+.todos-card__add-task-btn:active,
+.done-btn:active {
   opacity: 0.5;
 }
 
@@ -219,4 +220,14 @@ a:active {
 
 .task__todo-text {
   margin-right: auto;
+}
+
+.done-btn {
+  background-color: transparent;
+  border: none;
+}
+
+.done-btn > span:hover {
+  background-color: green;
+  border-radius: 1rem;
 }
