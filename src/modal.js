@@ -1,21 +1,21 @@
 export const modalModule = () => {
   const createTaskBtn = document.querySelector('.create-task-btn');
 
-  const createTaskDialog = document.querySelector('.modal');
-  const cancelBtn = createTaskDialog.querySelector('.modal__cancel-btn');
-  const saveBtn = createTaskDialog.querySelector('.modal__save-btn');
+  const taskModal = document.querySelector('.modal');
+  const cancelBtn = taskModal.querySelector('.modal__cancel-btn');
+  const saveBtn = taskModal.querySelector('.modal__save-btn');
 
   createTaskBtn.addEventListener('click', handleCreateTaskBtn);
 
   function handleCreateTaskBtn() {
-    createTaskDialog.showModal();
+    taskModal.showModal();
   }
 
   cancelBtn.addEventListener('click', handleModalCancelBtn);
   saveBtn.addEventListener('click', handleModalSaveBtn);
 
   function handleModalCancelBtn() {
-    createTaskDialog.close();
+    taskModal.close();
   }
 
   function handleModalSaveBtn() {
