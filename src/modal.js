@@ -21,4 +21,20 @@ export const modalModule = () => {
   function handleModalSaveBtn() {
     console.log('Work in Progress');
   }
+
+  taskModal.addEventListener('click', handleClickTaskModal);
+
+  function handleClickTaskModal(event) {
+    const dialogDimensions = taskModal.getBoundingClientRect();
+
+    // close modal when clicking on modal backdrop
+    if (
+      event.clientX < dialogDimensions.left ||
+      event.clientX > dialogDimensions.right ||
+      event.clientY < dialogDimensions.top ||
+      event.clientY > dialogDimensions.bottom
+    ) {
+      taskModal.close();
+    }
+  }
 };
