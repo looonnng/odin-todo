@@ -2,8 +2,10 @@ export const modalModule = () => {
   const createTaskBtn = document.querySelector('.create-task-btn');
 
   const taskModal = document.querySelector('.modal');
-  const cancelBtn = taskModal.querySelector('.modal__cancel-btn');
-  const saveBtn = taskModal.querySelector('.modal__save-btn');
+  const cancelBtn = taskModal.querySelector('[data-cancel-btn]');
+  const saveBtn = taskModal.querySelector('[data-save-btn]');
+
+  const taskForm = document.querySelector('.modal__form');
 
   createTaskBtn.addEventListener('click', handleCreateTaskBtn);
 
@@ -16,10 +18,12 @@ export const modalModule = () => {
 
   function handleModalCancelBtn() {
     taskModal.close();
+    taskForm.reset();
   }
 
   function handleModalSaveBtn() {
     console.log('Work in Progress');
+    taskForm.reset();
   }
 
   taskModal.addEventListener('click', handleClickTaskModal);
@@ -37,4 +41,17 @@ export const modalModule = () => {
       taskModal.close();
     }
   }
+
+  // activate save button when form control is filled
+  const taskTitle = document.querySelector('#task-title');
+  function isInputEmpty() {
+    if (taskTitle.value == '') {
+      saveBtn.disabled = true;
+      saveBtn.classList.remove('save');
+    } else {
+      saveBtn.disabled = false;
+      saveBtn.classList.add('save');
+    }
+  }
+  taskTitle.addEventListener('keyup', isInputEmpty);
 };
