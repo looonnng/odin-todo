@@ -74,9 +74,25 @@
         </button>
         <!-- MODAL -->
         <dialog class="modal">
-          <p>Lorem, ipsum dolor.</p>
-          <button class="modal__cancel-btn">Cancel</button>
-          <button class="modal__save-btn">Save</button>
+          <form class="modal__form col" method="dialog">
+            <p>Lorem, ipsum dolor.</p>
+            <ul class="dialog__controls-container">
+              <label for="task-title">
+                <input
+                  id="task-title"
+                  type="text"
+                  placeholder=""
+                  autocomplete="off"
+                />
+              </label>
+            </ul>
+            <div class="dialog__footer row">
+              <button data-cancel-btn class="modal__btn cancel">Cancel</button>
+              <button type="submit" data-save-btn class="modal__btn" disabled>
+                Save
+              </button>
+            </div>
+          </form>
         </dialog>
         <ul class="side-menu__list">
           <li class="side-menu__item">
