@@ -76,7 +76,7 @@
         <dialog class="modal">
           <form class="modal__form col" method="dialog">
             <p>Lorem, ipsum dolor.</p>
-            <ul class="dialog__controls-container">
+            <ul class="dialog__controls-container col">
               <label for="task-title">
                 <input
                   class="dialog__task-title"
@@ -84,6 +84,13 @@
                   type="text"
                   placeholder="Add title"
                   autocomplete="off"
+                />
+              </label>
+              <label for="task-due-date">
+                <input
+                  type="date"
+                  id="task-due-date"
+                  class="dialog__task-due-date"
                 />
               </label>
             </ul>
