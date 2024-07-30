@@ -2,8 +2,9 @@ export const modalModule = () => {
   const createTaskBtn = document.querySelector('.create-task-btn');
 
   const taskModal = document.querySelector('.modal');
-  const cancelBtn = taskModal.querySelector('[data-cancel-btn]');
-  const saveBtn = taskModal.querySelector('[data-save-btn]');
+  const cancelBtn = document.querySelector('[data-cancel-btn]');
+  const saveBtn = document.querySelector('[data-save-btn]');
+  const taskTitle = document.querySelector('#task-title');
 
   const taskForm = document.querySelector('.modal__form');
 
@@ -11,6 +12,7 @@ export const modalModule = () => {
 
   function handleCreateTaskBtn() {
     taskModal.showModal();
+    isInputEmpty();
   }
 
   cancelBtn.addEventListener('click', handleModalCancelBtn);
@@ -23,6 +25,7 @@ export const modalModule = () => {
 
   function handleModalSaveBtn() {
     console.log('Work in Progress');
+    isInputEmpty();
     taskForm.reset();
   }
 
@@ -43,9 +46,8 @@ export const modalModule = () => {
   }
 
   // activate save button when form control is filled
-  const taskTitle = document.querySelector('#task-title');
   function isInputEmpty() {
-    if (taskTitle.value == '') {
+    if (taskTitle.value === '') {
       saveBtn.disabled = true;
       saveBtn.classList.remove('save');
     } else {
