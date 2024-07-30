@@ -12,7 +12,7 @@ export const modalModule = () => {
 
   function handleCreateTaskBtn() {
     taskModal.showModal();
-    isInputEmpty();
+    isInputEmpty(); // disable save button 
   }
 
   cancelBtn.addEventListener('click', handleModalCancelBtn);
@@ -25,7 +25,7 @@ export const modalModule = () => {
 
   function handleModalSaveBtn() {
     console.log('Work in Progress');
-    isInputEmpty();
+    isInputEmpty(); // disable save button 
     taskForm.reset();
   }
 
