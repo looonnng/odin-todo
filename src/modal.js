@@ -1,10 +1,14 @@
+import { formatDistanceToNow, isValid, toDate } from 'date-fns';
+
 export const modalModule = () => {
   const createTaskBtn = document.querySelector('.create-task-btn');
 
   const taskModal = document.querySelector('.modal');
+  const closeBtn = document.querySelector('.modal__close-btn');
   const cancelBtn = document.querySelector('[data-cancel-btn]');
   const saveBtn = document.querySelector('[data-save-btn]');
   const taskTitle = document.querySelector('#task-title');
+  const dueDate = document.querySelector('.dialog__task-due-date');
 
   const taskForm = document.querySelector('.modal__form');
 
@@ -12,9 +16,11 @@ export const modalModule = () => {
 
   function handleCreateTaskBtn() {
     taskModal.showModal();
-    isInputEmpty(); // disable save button 
+    dueDate.valueAsDate = new Date();
+    isInputEmpty(); // disable save button
   }
 
+  closeBtn.addEventListener('click', handleModalCancelBtn);
   cancelBtn.addEventListener('click', handleModalCancelBtn);
   saveBtn.addEventListener('click', handleModalSaveBtn);
 
@@ -24,9 +30,15 @@ export const modalModule = () => {
   }
 
   function handleModalSaveBtn() {
-    console.log('Work in Progress');
-    isInputEmpty(); // disable save button 
-    taskForm.reset();
+    let due = dueDate.valueAsDate;
+    
+    if (isValid(toDate(due))) {
+      due = formatDistanceToNow(dueDate.value);
+      isInputEmpty(); // disable save button
+      taskForm.reset();
+    } else {
+      alert('please enter valid date');
+    }
   }
 
   taskModal.addEventListener('click', handleClickTaskModal);
@@ -56,4 +68,6 @@ export const modalModule = () => {
     }
   }
   taskTitle.addEventListener('keyup', isInputEmpty);
+
+  // due date
 };
