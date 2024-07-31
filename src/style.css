@@ -240,7 +240,7 @@ a:active {
 /* Modal */
 
 .modal {
-  min-width: 280px;
+  min-width: 480px;
   margin: auto;
   border: none;
   border-radius: 0.5rem;
@@ -267,7 +267,7 @@ a:active {
 
 .modal__form {
   gap: 1rem;
-  padding: 1rem 0.5rem;
+  padding: 1rem;
 }
 
 .modal__btn {
