@@ -259,7 +259,7 @@ a:active {
   padding: 0.25rem 0.75rem;
 }
 
-.close-btn {
+.modal__close-btn {
   border: none;
   padding: 0.15rem;
   border-radius: 1rem;
