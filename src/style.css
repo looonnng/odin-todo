@@ -298,7 +298,8 @@ a:active {
   border-bottom: 1px solid rgb(60, 64, 67);
 }
 
-.dialog__task-title:focus {
+.dialog__task-title:focus,
+.dialog__task-due-date:focus {
   outline: none;
   border-bottom: 2px solid var(--primary-color);
 }
@@ -306,4 +307,5 @@ a:active {
 .dialog__task-due-date {
   font-size: 1rem;
   width: 55%;
+  border: none;
 }
