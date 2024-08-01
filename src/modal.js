@@ -18,6 +18,7 @@ export const modalModule = () => {
   function handleCreateTaskBtn() {
     taskModal.showModal();
 
+    // dueDate is not accurate without UTC Date
     const today = new Date();
     dueDate.valueAsDate = new Date(
       Date.UTC(today.getFullYear(), today.getMonth(), today.getDate()),
@@ -60,7 +61,6 @@ export const modalModule = () => {
       event.clientY < dialogDimensions.top ||
       event.clientY > dialogDimensions.bottom
     ) {
-      console.log('I CLICKED SELECT OPTIONS');
       taskModal.close();
     }
   }
@@ -76,6 +76,4 @@ export const modalModule = () => {
     }
   }
   taskTitle.addEventListener('keyup', isInputEmpty);
-
-  // due date
 };
