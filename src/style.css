@@ -327,6 +327,8 @@ a:active {
   min-width: 205px;
   bottom: 30px;
   z-index: 1;
+  max-height: 242px;
+  overflow-y: scroll;
 
   & div {
     padding: 0.35rem 0.5rem;
