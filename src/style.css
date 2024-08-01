@@ -313,6 +313,7 @@ a:active {
 .dropup {
   position: relative;
   display: inline-block;
+  align-self: flex-start; /* only show options when hover over button */
 }
 
 .dropup-btn {
