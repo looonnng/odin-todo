@@ -7,6 +7,10 @@
 :root {
   --primary-color: #1a73e8;
   --accent-color: #e9ecee;
+  --hover-shadow: 0 1px 3px 0 rgba(60, 64, 67, 0.3),
+    0 4px 8px 3px rgba(60, 64, 67, 0.15);
+  --active-shadow: 0 1px 10px 0 rgba(60, 64, 67, 0.3),
+    0 4px 8px 3px rgba(60, 64, 67, 0.15);
 }
 
 * {
@@ -200,14 +204,16 @@ a:active {
   padding: 0.5rem 1rem;
 }
 
-.create-task-btn:hover {
-  box-shadow: 0 1px 3px 0 rgba(60, 64, 67, 0.3),
-    0 4px 8px 3px rgba(60, 64, 67, 0.15);
+.create-task-btn:hover,
+.cancel:hover,
+.save:hover {
+  box-shadow: var(--hover-shadow);
 }
 
-.create-task-btn:active {
-  box-shadow: 0 1px 10px 0 rgba(60, 64, 67, 0.3),
-    0 4px 8px 3px rgba(60, 64, 67, 0.15);
+.create-task-btn:active,
+.cancel:active,
+.save:active {
+  box-shadow: var(--active-shadow);
 }
 
 /* Task section */
