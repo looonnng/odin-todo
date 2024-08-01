@@ -7,6 +7,7 @@ export const modalModule = () => {
   const closeBtn = document.querySelector('.modal__close-btn');
   const cancelBtn = document.querySelector('[data-cancel-btn]');
   const saveBtn = document.querySelector('[data-save-btn]');
+  const dropupBtn = document.querySelector('[data-dropup-btn]');
   const taskTitle = document.querySelector('#task-title');
   const dueDate = document.querySelector('.dialog__task-due-date');
 
@@ -16,13 +17,19 @@ export const modalModule = () => {
 
   function handleCreateTaskBtn() {
     taskModal.showModal();
-    dueDate.valueAsDate = new Date();
+
+    const today = new Date();
+    dueDate.valueAsDate = new Date(
+      Date.UTC(today.getFullYear(), today.getMonth(), today.getDate()),
+    );
+
     isInputEmpty(); // disable save button
   }
 
   closeBtn.addEventListener('click', handleModalCancelBtn);
   cancelBtn.addEventListener('click', handleModalCancelBtn);
   saveBtn.addEventListener('click', handleModalSaveBtn);
+  dropupBtn.addEventListener('click', (e) => e.preventDefault());
 
   function handleModalCancelBtn() {
     taskModal.close();
@@ -31,7 +38,7 @@ export const modalModule = () => {
 
   function handleModalSaveBtn() {
     let due = dueDate.valueAsDate;
-    
+
     if (isValid(toDate(due))) {
       due = formatDistanceToNow(dueDate.value);
       isInputEmpty(); // disable save button
@@ -53,6 +60,7 @@ export const modalModule = () => {
       event.clientY < dialogDimensions.top ||
       event.clientY > dialogDimensions.bottom
     ) {
+      console.log('I CLICKED SELECT OPTIONS');
       taskModal.close();
     }
   }
