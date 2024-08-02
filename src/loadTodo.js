@@ -8,10 +8,19 @@ const createMyElement = (tag, classList = [], text = '') => {
 export const createTask = (task) => {
   const todoCard = createMyElement('div', ['todos-card', 'col', 'my-task']);
   const todoCardTop = createTodoCardTop();
-  
-  todoCard.append(todoCardTop);
+  const addTaskButton = createButton(
+    ['todos-card__add-task-btn', 'row'],
+    'add_task',
+    ['size-27'],
+  );
+
+  addTaskButton.appendChild(createMyElement('p', [], 'Add a task'));
+  todoCard.append(todoCardTop, addTaskButton);
+
+  return todoCard;
 };
 
+// Todo Card Top
 function createTodoCardTop() {
   const todoCardTop = createMyElement('div', ['todos-card__top', 'row']);
   const todoCardName = createMyElement('div', ['todos-card__name'], 'My Task');
@@ -27,4 +36,14 @@ function createTodoCardTop() {
   todoCardMoreOptionBtn.appendChild(moreVertIcon);
   todoCardTop.append(todoCardName, todoCardMoreOptionBtn);
   return todoCardTop;
+}
+
+// Todo Card
+function createButton(buttonClassList = [], iconName, buttonIconClassList) {
+  buttonIconClassList.unshift('material-symbols-outlined');
+  const button = createMyElement('button', buttonClassList);
+  const buttonIcon = createMyElement('span', buttonIconClassList, iconName);
+
+  button.appendChild(buttonIcon);
+  return button;
 }
