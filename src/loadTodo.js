@@ -5,7 +5,7 @@ const createMyElement = (tag, classList = [], text = '') => {
   return element;
 };
 
-export const createTask = (task) => {
+export const createTaskCard = (task) => {
   const todoCard = createMyElement('div', ['todos-card', 'col', 'my-task']);
   const todoCardTop = createTodoCardTop();
   const addTaskButton = createButton(
@@ -13,9 +13,10 @@ export const createTask = (task) => {
     'add_task',
     ['size-27'],
   );
+  const myTaskContainer = createTaskContainer(task);
 
   addTaskButton.appendChild(createMyElement('p', [], 'Add a task'));
-  todoCard.append(todoCardTop, addTaskButton);
+  todoCard.append(todoCardTop, addTaskButton, myTaskContainer);
 
   return todoCard;
 };
@@ -46,4 +47,29 @@ function createButton(buttonClassList = [], iconName, buttonIconClassList) {
 
   button.appendChild(buttonIcon);
   return button;
+}
+
+function createTaskContainer(task) {
+  const taskContainer = createMyElement('div', ['todos-card__tasks-container']);
+  const myTask = createMyElement('div', ['task', 'row']);
+  const doneBtnWrapper = createMyElement('div', ['done-btn-wrapper']);
+  const doneBtn = createButton(['done-btn'], 'circle', []);
+  const myTodo = createTodo(task);
+
+  doneBtnWrapper.appendChild(doneBtn);
+  myTask.append(doneBtnWrapper, myTodo);
+  taskContainer.appendChild(myTask);
+
+  return taskContainer;
+}
+
+function createTodo(task) {
+  const taskTodo = createMyElement('div', ['task__todo', 'row']);
+  const todoText = createMyElement('p', ['task__todo-text'], task);
+  const moreOptions = createButton(['task__todo-more-options'], 'more_vert', [
+    'size-20',
+  ]);
+
+  taskTodo.append(todoText, moreOptions);
+  return taskTodo;
 }
