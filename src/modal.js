@@ -1,4 +1,5 @@
 import { formatDistanceToNow, isValid, toDate } from 'date-fns';
+import { createTaskCard } from './loadTodo';
 
 export const modalModule = () => {
   const createTaskBtn = document.querySelector('.create-task-btn');
@@ -47,6 +48,9 @@ export const modalModule = () => {
     } else {
       alert('please enter valid date');
     }
+    document
+      .querySelector('.task-lists-container__wrapper')
+      .appendChild(createTaskCard(taskTitle.value));
   }
 
   taskModal.addEventListener('click', handleClickTaskModal);
