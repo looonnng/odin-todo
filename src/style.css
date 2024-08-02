@@ -177,18 +177,20 @@ a:active {
   color: var(--primary-color);
   background-color: transparent;
   border: none;
-
+  align-self: flex-start;
   & span {
     margin-right: 0.5rem;
   }
 }
 
-.todos-card__add-task-btn:hover {
-  opacity: 0.75;
+.todos-card__add-task-btn:hover,
+.task__todo-more-options:hover {
+  background: #eee;
 }
 
 .todos-card__add-task-btn:active,
-.done-btn:active {
+.done-btn:active,
+.task__todo-more-options:active {
   opacity: 0.5;
 }
 
@@ -233,7 +235,8 @@ a:active {
   margin-right: auto;
 }
 
-.done-btn {
+.done-btn,
+.task__todo-more-options {
   background-color: transparent;
   border: none;
 }
