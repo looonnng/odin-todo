@@ -186,13 +186,13 @@ a:active {
 }
 
 .todos-card__add-task-btn:hover,
-.task__todo-more-options:hover {
+.more-options-btn:hover {
   background: #eee;
 }
 
 .todos-card__add-task-btn:active,
 .done-btn:active,
-.task__todo-more-options:active {
+.more-options-btn:active {
   opacity: 0.5;
 }
 
@@ -238,7 +238,7 @@ a:active {
 }
 
 .done-btn,
-.task__todo-more-options {
+.more-options-btn {
   background-color: transparent;
   border: none;
 }
