@@ -25,22 +25,22 @@ export const createTaskCard = (task) => {
 function createTodoCardTop() {
   const todoCardTop = createMyElement('div', ['todos-card__top', 'row']);
   const todoCardName = createMyElement('div', ['todos-card__name'], 'My Task');
-  const todoCardMoreOptionBtn = createMyElement('div', [
-    'todos-card-list-options-btn',
-  ]);
-  const moreVertIcon = createMyElement(
-    'span',
-    ['material-symbols-outlined', 'size-20'],
+  const todoCardMoreOptionBtn = createButton(
+    ['todos-card__list-more-options', 'more-options-btn'],
     'more_vert',
+    ['size-20'],
   );
 
-  todoCardMoreOptionBtn.appendChild(moreVertIcon);
   todoCardTop.append(todoCardName, todoCardMoreOptionBtn);
   return todoCardTop;
 }
 
 // Todo Card
-function createButton(buttonClassList = [], iconName, buttonIconClassList) {
+function createButton(
+  buttonClassList = [],
+  iconName,
+  buttonIconClassList = [],
+) {
   buttonIconClassList.unshift('material-symbols-outlined');
   const button = createMyElement('button', buttonClassList);
   const buttonIcon = createMyElement('span', buttonIconClassList, iconName);
@@ -66,9 +66,11 @@ function createTaskContainer(task) {
 function createTodo(task) {
   const taskTodo = createMyElement('div', ['task__todo', 'row']);
   const todoText = createMyElement('p', ['task__todo-text'], task);
-  const moreOptions = createButton(['task__todo-more-options'], 'more_vert', [
-    'size-20',
-  ]);
+  const moreOptions = createButton(
+    ['task__todo-more-options', 'more-options-btn'],
+    'more_vert',
+    ['size-20'],
+  );
 
   taskTodo.append(todoText, moreOptions);
   return taskTodo;
