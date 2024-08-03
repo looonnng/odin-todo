@@ -144,6 +144,8 @@ a:active {
 }
 
 .task-lists-container {
+  min-width: 0;
+  min-height: 0;
   flex: 1 1 100%;
   overflow-x: scroll;
 }
