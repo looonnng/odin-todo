@@ -1,5 +1,5 @@
 import { formatDistanceToNow, isValid, toDate } from 'date-fns';
-import { createTaskCard } from './loadTodo';
+import { createTodo, createTaskList } from './loadTodo';
 
 export const modalModule = () => {
   const createTaskBtn = document.querySelector('.create-task-btn');
@@ -25,6 +25,8 @@ export const modalModule = () => {
       Date.UTC(today.getFullYear(), today.getMonth(), today.getDate()),
     );
 
+    // Add task list options
+
     isInputEmpty(); // disable save button
   }
 
@@ -40,17 +42,20 @@ export const modalModule = () => {
 
   function handleModalSaveBtn() {
     let due = dueDate.valueAsDate;
-
+    const currentTaskList = document.querySelector('[data-current-task-list]');
+    const currentTaskContainer = currentTaskList.dataset.currentTaskList;
     if (isValid(toDate(due))) {
       due = formatDistanceToNow(dueDate.value);
-      isInputEmpty(); // disable save button
-      taskForm.reset();
     } else {
       alert('please enter valid date');
     }
+
     document
-      .querySelector('.task-lists-container__wrapper')
-      .appendChild(createTaskCard(taskTitle.value));
+      .querySelector(`[data-task-container= "${currentTaskContainer}"]`)
+      .appendChild(createTodo(taskTitle.value));
+
+    isInputEmpty(); // disable save button
+    taskForm.reset();
   }
 
   taskModal.addEventListener('click', handleClickTaskModal);
