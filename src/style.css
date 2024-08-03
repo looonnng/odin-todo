@@ -237,6 +237,10 @@ a:active {
   margin-right: auto;
 }
 
+.more-options-btn {
+  align-self: flex-start;
+}
+
 .done-btn,
 .more-options-btn {
   background-color: transparent;
