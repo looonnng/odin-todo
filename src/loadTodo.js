@@ -1,5 +1,5 @@
 // Utility function
-const createMyElement = (tag, classList = [], text = '') => {
+export const createMyElement = (tag, classList = [], text = '') => {
   const element = document.createElement(tag);
   element.classList.add(...classList);
   element.textContent = text;
