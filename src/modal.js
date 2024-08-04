@@ -1,9 +1,8 @@
 import { formatDistanceToNow, isValid, toDate } from 'date-fns';
-import { createTodo, createTaskList } from './loadTodo';
+import { createMyElement, createTodo, createTaskList } from './loadTodo';
 
-export const modalModule = () => {
+const modalModule = () => {
   const createTaskBtn = document.querySelector('.create-task-btn');
-
   const taskModal = document.querySelector('.modal');
   const closeBtn = document.querySelector('.modal__close-btn');
   const cancelBtn = document.querySelector('[data-cancel-btn]');
@@ -11,10 +10,15 @@ export const modalModule = () => {
   const dropupBtn = document.querySelector('[data-dropup-btn]');
   const taskTitle = document.querySelector('#task-title');
   const dueDate = document.querySelector('.dialog__task-due-date');
-
   const taskForm = document.querySelector('.modal__form');
 
   createTaskBtn.addEventListener('click', handleCreateTaskBtn);
+  closeBtn.addEventListener('click', handleModalCancelBtn);
+  cancelBtn.addEventListener('click', handleModalCancelBtn);
+  saveBtn.addEventListener('click', handleModalSaveBtn);
+  dropupBtn.addEventListener('click', (e) => e.preventDefault());
+  taskModal.addEventListener('click', handleClickTaskModal);
+  taskTitle.addEventListener('keyup', isInputEmpty);
 
   function handleCreateTaskBtn() {
     taskModal.showModal();
@@ -30,11 +34,6 @@ export const modalModule = () => {
     isInputEmpty(); // disable save button
   }
 
-  closeBtn.addEventListener('click', handleModalCancelBtn);
-  cancelBtn.addEventListener('click', handleModalCancelBtn);
-  saveBtn.addEventListener('click', handleModalSaveBtn);
-  dropupBtn.addEventListener('click', (e) => e.preventDefault());
-
   function handleModalCancelBtn() {
     taskModal.close();
     taskForm.reset();
@@ -42,23 +41,16 @@ export const modalModule = () => {
 
   function handleModalSaveBtn() {
     let due = dueDate.valueAsDate;
-    const currentTaskList = document.querySelector('[data-current-task-list]');
-    const currentTaskContainer = currentTaskList.dataset.currentTaskList;
+
     if (isValid(toDate(due))) {
       due = formatDistanceToNow(dueDate.value);
     } else {
       alert('please enter valid date');
     }
 
-    document
-      .querySelector(`[data-task-container= "${currentTaskContainer}"]`)
-      .appendChild(createTodo(taskTitle.value));
-
     isInputEmpty(); // disable save button
     taskForm.reset();
   }
-
-  taskModal.addEventListener('click', handleClickTaskModal);
 
   function handleClickTaskModal(event) {
     const dialogDimensions = taskModal.getBoundingClientRect();
@@ -84,5 +76,57 @@ export const modalModule = () => {
       saveBtn.classList.add('save');
     }
   }
-  taskTitle.addEventListener('keyup', isInputEmpty);
+
+  function getTaskList() {
+    const taskLists = [...document.querySelectorAll('.todos-card__name')].map(
+      (listName) => listName.textContent,
+    );
+
+    return taskLists;
+  }
+
+  function loadTaskListToModal() {
+    const currentDisplayTaskList = document.querySelector(
+      '[data-current-task-list]',
+    ).dataset.currentTaskList;
+    const taskListNames = getTaskList().filter(
+      (tasklist) => tasklist.toLowerCase() != currentDisplayTaskList,
+    );
+    const dropupContent = document.querySelector('.dropup-content');
+    dropupContent.replaceChildren(); // Prevent duplicates from existing list
+
+    taskListNames.forEach((listName) => {
+      const listOption = createMyElement('div', [], `${listName}`);
+      listOption.setAttribute(
+        'data-task-list-option',
+        `${listName.toLowerCase()}`,
+      );
+
+      dropupContent.appendChild(listOption);
+    });
+
+    attachEventToOptions();
+  }
+
+  loadTaskListToModal();
+
+  function attachEventToOptions() {
+    const taskListOptions = document.querySelectorAll(
+      '[data-task-list-option]',
+    );
+
+    taskListOptions.forEach((option) => {
+      option.addEventListener('click', handleClickListOption);
+    });
+  }
+
+  function handleClickListOption(event) {
+    const clickedOption = event.target.dataset.taskListOption;
+    const currTaskList = document.querySelector('[data-current-task-list]');
+    currTaskList.dataset.currentTaskList = clickedOption;
+    currTaskList.textContent = clickedOption;
+    loadTaskListToModal();
+  }
 };
+
+export default modalModule;
