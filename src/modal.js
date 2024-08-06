@@ -48,6 +48,8 @@ const modalModule = () => {
       alert('please enter valid date');
     }
 
+    addTodoToTaskList(taskTitle.value);
+
     isInputEmpty(); // disable save button
     taskForm.reset();
   }
@@ -108,6 +110,7 @@ const modalModule = () => {
     attachEventToOptions();
   }
 
+  // Init task lists
   loadTaskListToModal();
 
   function attachEventToOptions() {
@@ -126,6 +129,20 @@ const modalModule = () => {
     currTaskList.dataset.currentTaskList = clickedOption;
     currTaskList.textContent = clickedOption;
     loadTaskListToModal();
+  }
+
+  // add todo to correct task list
+  function addTodoToTaskList(task) {
+    const myTodo = createTodo(task);
+    const currTaskList = document.querySelector('[data-current-task-list]')
+      .dataset.currentTaskList;
+    const currTaskContainer = document.querySelector(
+      `[data-task-container="${currTaskList}"]`,
+    );
+
+    currTaskContainer.appendChild(myTodo);
+
+    return currTaskContainer;
   }
 };
 
