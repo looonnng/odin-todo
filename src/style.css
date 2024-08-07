@@ -220,6 +220,14 @@ a:active {
   box-shadow: var(--active-shadow);
 }
 
+.side-menu__list {
+  line-height: 1.5rem;
+}
+
+.side-menu__item {
+  height: 32px;
+}
+
 /* Task section */
 .task {
   gap: 0.5rem;
