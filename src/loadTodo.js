@@ -1,7 +1,12 @@
 // Utility function
 export const createMyElement = (tag, classList = [], text = '') => {
   const element = document.createElement(tag);
-  element.classList.add(...classList);
+
+  // avoid creating empty class attribute
+  if (classList) {
+    element.classList.add(...classList);
+  }
+
   element.textContent = text;
   return element;
 };
