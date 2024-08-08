@@ -3,24 +3,39 @@ import { createMyElement, createTodo, createTaskList } from './loadTodo';
 
 const modalModule = () => {
   const createTaskBtn = document.querySelector('.create-task-btn');
-  const taskModal = document.querySelector('.modal');
-  const closeBtn = document.querySelector('.modal__close-btn');
+  const createListBtn = document.querySelector('.side-menu__new-list-btn');
+  const taskModal = document.querySelector('.create-new-task');
+  const listModal = document.querySelector('.create-new-list');
+  const closeBtns = document.querySelectorAll('.modal__close-btn');
   const cancelBtn = document.querySelector('[data-cancel-btn]');
   const saveBtn = document.querySelector('[data-save-btn]');
   const dropupBtn = document.querySelector('[data-dropup-btn]');
   const taskTitle = document.querySelector('#task-title');
+  const listTitle = document.querySelector('#new-list-title');
   const dueDate = document.querySelector('.dialog__task-due-date');
   const taskForm = document.querySelector('.modal__form');
 
   createTaskBtn.addEventListener('click', handleCreateTaskBtn);
-  closeBtn.addEventListener('click', handleModalCancelBtn);
+  createListBtn.addEventListener('click', handleCreateListBtn);
+
+  closeBtns.forEach((btn) => {
+    btn.addEventListener('click', handleModalCancelBtn);
+  });
   cancelBtn.addEventListener('click', handleModalCancelBtn);
   saveBtn.addEventListener('click', handleModalSaveBtn);
   dropupBtn.addEventListener('click', (e) => e.preventDefault());
   taskModal.addEventListener('click', handleClickTaskModal);
   taskTitle.addEventListener('keyup', isInputEmpty);
 
-  function handleCreateTaskBtn() {
+  listModal.addEventListener('click', handleClickTaskModal);
+  listTitle.addEventListener('keyup', isInputEmpty);
+
+  function handleCreateListBtn(event) {
+    listModal.showModal();
+    isInputEmpty(event);
+  }
+
+  function handleCreateTaskBtn(event) {
     taskModal.showModal();
 
     // dueDate is not accurate without UTC Date
@@ -29,53 +44,67 @@ const modalModule = () => {
       Date.UTC(today.getFullYear(), today.getMonth(), today.getDate()),
     );
 
-    // Add task list options
-
-    isInputEmpty(); // disable save button
+    isInputEmpty(event); // disable save button
   }
 
-  function handleModalCancelBtn() {
-    taskModal.close();
-    taskForm.reset();
+  function handleModalCancelBtn(event) {
+    const currentModal = event.target.closest('.modal');
+    currentModal.close();
+    currentModal.querySelector('.modal__form').reset();
   }
 
-  function handleModalSaveBtn() {
-    let due = dueDate.valueAsDate;
+  function handleModalSaveBtn(event) {
+    const currentModal = event.target.closest('.modal');
+    if ([...currentModal.classList].includes('create-new-task')) {
+      let due = dueDate.valueAsDate;
 
-    if (isValid(toDate(due))) {
-      due = formatDistanceToNow(dueDate.value);
+      if (isValid(toDate(due))) {
+        due = formatDistanceToNow(dueDate.value);
+      } else {
+        alert('please enter valid date');
+      }
+
+      addTodoToTaskList(taskTitle.value);
     } else {
-      alert('please enter valid date');
+      console.log('Work in progress!');
     }
 
-    addTodoToTaskList(taskTitle.value);
-
-    isInputEmpty(); // disable save button
-    taskForm.reset();
+    isInputEmpty(event); // disable save button
+    currentModal.querySelector('.modal__form').reset();
   }
 
   function handleClickTaskModal(event) {
-    const dialogDimensions = taskModal.getBoundingClientRect();
+    const currentModal = event.target.closest('.modal');
 
-    // close modal when clicking on modal backdrop
-    if (
-      event.clientX < dialogDimensions.left ||
-      event.clientX > dialogDimensions.right ||
-      event.clientY < dialogDimensions.top ||
-      event.clientY > dialogDimensions.bottom
-    ) {
-      taskModal.close();
+    if (currentModal) {
+      const dialogDimensions = currentModal.getBoundingClientRect();
+
+      // close modal when clicking on modal backdrop
+      if (
+        event.clientX < dialogDimensions.left ||
+        event.clientX > dialogDimensions.right ||
+        event.clientY < dialogDimensions.top ||
+        event.clientY > dialogDimensions.bottom
+      ) {
+        currentModal.close();
+      }
     }
   }
 
   // activate save button when form control is filled
-  function isInputEmpty() {
-    if (taskTitle.value === '') {
-      saveBtn.disabled = true;
-      saveBtn.classList.remove('save');
-    } else {
-      saveBtn.disabled = false;
-      saveBtn.classList.add('save');
+  function isInputEmpty(event) {
+    const currentModal = event.target.closest('.modal');
+
+    if (currentModal) {
+      const currentTitle = currentModal.querySelector('.dialog__title').value;
+      const currentSaveBtn = currentModal.querySelector('[data-save-btn]');
+      if (currentTitle === '') {
+        currentSaveBtn.disabled = true;
+        currentSaveBtn.classList.remove('save');
+      } else {
+        currentSaveBtn.disabled = false;
+        currentSaveBtn.classList.add('save');
+      }
     }
   }
 
