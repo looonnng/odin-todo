@@ -186,13 +186,17 @@ a:active {
 }
 
 .todos-card__add-task-btn:hover,
-.more-options-btn:hover {
+.more-options-btn:hover,
+.new-list-btn-wrapper:hover,
+.side-menu__item:hover {
   background: #eee;
 }
 
 .todos-card__add-task-btn:active,
 .done-btn:active,
-.more-options-btn:active {
+.more-options-btn:active,
+.new-list-btn-wrapper:active,
+.side-menu__item:active {
   opacity: 0.5;
 }
 
@@ -250,7 +254,8 @@ a:active {
 }
 
 .done-btn,
-.more-options-btn {
+.more-options-btn,
+.side-menu__new-list-btn {
   background-color: transparent;
   border: none;
 }
