@@ -232,6 +232,11 @@ a:active {
   height: 32px;
 }
 
+.side-menu__new-list-btn {
+  width: 100%;
+  text-align: left;
+}
+
 /* Task section */
 .task {
   gap: 0.5rem;
