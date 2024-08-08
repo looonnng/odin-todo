@@ -73,7 +73,7 @@
           <span class="material-symbols-outlined">stylus</span>Create
         </button>
         <!-- MODAL Create Task -->
-        <dialog class="modal">
+        <dialog class="modal create-new-task">
           <div class="modal__header row">
             <button class="modal__close-btn">
               <span class="material-symbols-outlined">close</span>
@@ -83,7 +83,7 @@
             <ul class="dialog__controls-container col">
               <label for="task-title">
                 <input
-                  class="dialog__task-title"
+                  class="dialog__title"
                   id="task-title"
                   type="text"
                   placeholder="Add title"
@@ -137,6 +137,40 @@
                 <span class="material-symbols-outlined">add</span>Create new
                 list
               </button>
+              <!-- MODAL create new list -->
+              <dialog class="modal create-new-list">
+                <div class="modal__header row">
+                  <button class="modal__close-btn">
+                    <span class="material-symbols-outlined">close</span>
+                  </button>
+                </div>
+                <form class="modal__form col" method="dialog">
+                  <ul class="dialog__controls-container col">
+                    <label for="new-list-title">
+                      <input
+                        class="dialog__title"
+                        id="new-list-title"
+                        type="text"
+                        placeholder="Add title"
+                        autocomplete="off"
+                      />
+                    </label>
+                  </ul>
+                  <div class="dialog__footer row">
+                    <button data-cancel-btn class="modal__btn cancel">
+                      Cancel
+                    </button>
+                    <button
+                      type="submit"
+                      data-save-btn
+                      class="modal__btn"
+                      disabled
+                    >
+                      Save
+                    </button>
+                  </div>
+                </form>
+              </dialog>
             </li>
           </ul>
         </div>
