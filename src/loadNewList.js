@@ -5,17 +5,20 @@ const loadTaskListToSideBar = () => {
   const taskListContainers = document.querySelectorAll('.todos-card__name');
 
   taskListContainers.forEach((container) => {
-    const taskList = createMyElement('li', ['side-menu__item']);
     const checkBox = createMyElement('input', ['side-menu__checkbox']);
-    const checkBoxLabel = createMyElement('label', '', container.textContent);
+    const checkBoxLabel = createMyElement(
+      'label',
+      ['side-menu__item'],
+      container.textContent,
+    );
 
     checkBox.type = 'checkbox';
     checkBox.id = container.textContent;
     checkBoxLabel.htmlFor = container.textContent;
-    taskList.append(checkBox, checkBoxLabel);
+    checkBoxLabel.prepend(checkBox);
 
     sideMenuListContainer.insertBefore(
-      taskList,
+      checkBoxLabel,
       sideMenuListContainer.lastElementChild,
     );
   });
