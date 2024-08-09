@@ -57,6 +57,7 @@ const modalModule = () => {
 
   function handleModalSaveBtn(event) {
     const currentModal = event.target.closest('.modal');
+
     if ([...currentModal.classList].includes('create-new-task')) {
       let due = dueDate.valueAsDate;
 
@@ -71,7 +72,6 @@ const modalModule = () => {
       console.log('Work in progress!');
     }
 
-    isInputEmpty(event); // disable save button
     currentModal.querySelector('.modal__form').reset();
   }
 
@@ -95,19 +95,19 @@ const modalModule = () => {
 
   // activate save button when form control is filled
   function isInputEmpty(event) {
-    const currentModal = event.target.closest('.modal');
+    const currentModal =
+      event.currentTarget.previousElementSibling ||
+      event.target.closest('.modal');
 
-    if (currentModal) {
-      const currentTitle = currentModal.querySelector('.dialog__title').value;
-      const currentSaveBtn = currentModal.querySelector('[data-save-btn]');
-      
-      if (currentTitle === '') {
-        currentSaveBtn.disabled = true;
-        currentSaveBtn.classList.remove('save');
-      } else {
-        currentSaveBtn.disabled = false;
-        currentSaveBtn.classList.add('save');
-      }
+    const currentTitle = currentModal.querySelector('.dialog__title').value;
+    const currentSaveBtn = currentModal.querySelector('[data-save-btn]');
+
+    if (currentTitle === '') {
+      currentSaveBtn.disabled = true;
+      currentSaveBtn.classList.remove('save');
+    } else {
+      currentSaveBtn.disabled = false;
+      currentSaveBtn.classList.add('save');
     }
   }
 
