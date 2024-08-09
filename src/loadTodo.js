@@ -12,13 +12,17 @@ export const createMyElement = (tag, classList = [], text = '') => {
 };
 
 // Create new task list and task container
-export const createTaskList = () => {
+export const createTaskList = (taskListTitle) => {
   const taskListWrapper = createMyElement('div', [
     'task-lists-container__wrapper',
     'row',
   ]);
-  const todoCard = createMyElement('div', ['todos-card', 'col', 'my-task']);
-  const todoCardTop = createTodoCardTop();
+  const todoCard = createMyElement('div', [
+    'todos-card',
+    'col',
+    taskListTitle.toLowerCase().replaceAll(' ', '-'),
+  ]);
+  const todoCardTop = createTodoCardTop(taskListTitle);
   const addTaskButton = createButton(
     ['todos-card__add-task-btn', 'row'],
     'add_task',
@@ -34,9 +38,13 @@ export const createTaskList = () => {
 };
 
 // Task List Top
-function createTodoCardTop() {
+function createTodoCardTop(taskListTitle) {
   const todoCardTop = createMyElement('div', ['todos-card__top', 'row']);
-  const todoCardName = createMyElement('div', ['todos-card__name'], 'My Task');
+  const todoCardName = createMyElement(
+    'div',
+    ['todos-card__name'],
+    taskListTitle,
+  );
   const todoCardMoreOptionBtn = createButton(
     ['todos-card__list-more-options', 'more-options-btn'],
     'more_vert',
