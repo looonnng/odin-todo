@@ -7,22 +7,24 @@ const modalModule = () => {
   const taskModal = document.querySelector('.create-new-task');
   const listModal = document.querySelector('.create-new-list');
   const closeBtns = document.querySelectorAll('.modal__close-btn');
-  const cancelBtn = document.querySelector('[data-cancel-btn]');
-  const saveBtn = document.querySelector('[data-save-btn]');
+  const cancelBtns = document.querySelectorAll('[data-cancel-btn]');
+  const saveBtns = document.querySelectorAll('[data-save-btn]');
   const dropupBtn = document.querySelector('[data-dropup-btn]');
   const taskTitle = document.querySelector('#task-title');
   const listTitle = document.querySelector('#new-list-title');
   const dueDate = document.querySelector('.dialog__task-due-date');
-  const taskForm = document.querySelector('.modal__form');
+  const taskListsContainer = document.querySelector('.task-lists-container');
 
   createTaskBtn.addEventListener('click', handleCreateTaskBtn);
   createListBtn.addEventListener('click', handleCreateListBtn);
 
-  closeBtns.forEach((btn) => {
-    btn.addEventListener('click', handleModalCancelBtn);
-  });
-  cancelBtn.addEventListener('click', handleModalCancelBtn);
-  saveBtn.addEventListener('click', handleModalSaveBtn);
+  closeBtns.forEach((btn) =>
+    btn.addEventListener('click', handleModalCancelBtn),
+  );
+  cancelBtns.forEach((btn) =>
+    btn.addEventListener('click', handleModalCancelBtn),
+  );
+  saveBtns.forEach((btn) => btn.addEventListener('click', handleModalSaveBtn));
   dropupBtn.addEventListener('click', (e) => e.preventDefault());
   taskModal.addEventListener('click', handleClickTaskModal);
   taskTitle.addEventListener('keyup', isInputEmpty);
@@ -98,6 +100,7 @@ const modalModule = () => {
     if (currentModal) {
       const currentTitle = currentModal.querySelector('.dialog__title').value;
       const currentSaveBtn = currentModal.querySelector('[data-save-btn]');
+      
       if (currentTitle === '') {
         currentSaveBtn.disabled = true;
         currentSaveBtn.classList.remove('save');
