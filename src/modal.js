@@ -69,7 +69,8 @@ const modalModule = () => {
 
       addTodoToTaskList(taskTitle.value);
     } else {
-      console.log('Work in progress!');
+      const newTaskList = createTaskList(listTitle.value);
+      taskListsContainer.appendChild(newTaskList);
     }
 
     currentModal.querySelector('.modal__form').reset();
