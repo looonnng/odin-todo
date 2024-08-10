@@ -69,8 +69,14 @@ const modalModule = () => {
 
       addTodoToTaskList(taskTitle.value);
     } else {
+      const currentTaskList = getTaskList();
+      if (currentTaskList.includes(listTitle.value)) {
+        alert('This list is already created!');
+        return;
+      }
       const newTaskList = createTaskList(listTitle.value);
       taskListsContainer.appendChild(newTaskList);
+      loadTaskListToModal();
     }
 
     currentModal.querySelector('.modal__form').reset();
@@ -125,17 +131,15 @@ const modalModule = () => {
       '[data-current-task-list]',
     ).dataset.currentTaskList;
     const taskListNames = getTaskList().filter(
-      (tasklist) => tasklist.toLowerCase() != currentDisplayTaskList,
+      (tasklist) => tasklist != currentDisplayTaskList,
     );
+
     const dropupContent = document.querySelector('.dropup-content');
     dropupContent.replaceChildren(); // Prevent duplicates from existing list
 
     taskListNames.forEach((listName) => {
       const listOption = createMyElement('div', [], `${listName}`);
-      listOption.setAttribute(
-        'data-task-list-option',
-        `${listName.toLowerCase()}`,
-      );
+      listOption.setAttribute('data-task-list-option', `${listName}`);
 
       dropupContent.appendChild(listOption);
     });
