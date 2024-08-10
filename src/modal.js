@@ -77,6 +77,7 @@ const modalModule = () => {
       const newTaskList = createTaskList(listTitle.value);
       taskListsContainer.appendChild(newTaskList);
       loadTaskListToModal();
+      loadTaskListToSideBar();
     }
 
     currentModal.querySelector('.modal__form').reset();
@@ -147,8 +148,27 @@ const modalModule = () => {
     attachEventToOptions();
   }
 
+  function loadTaskListToSideBar() {
+    const sideMenuListContainer = document.querySelector('.list-container');
+    const taskLists = getTaskList();
+
+    sideMenuListContainer.replaceChildren();
+    taskLists.forEach((list) => {
+      const checkBox = createMyElement('input', ['side-menu__checkbox']);
+      const checkBoxLabel = createMyElement('label', ['side-menu__item'], list);
+
+      checkBox.type = 'checkbox';
+      checkBox.id = list;
+      checkBoxLabel.htmlFor = list;
+      checkBoxLabel.prepend(checkBox);
+
+      sideMenuListContainer.appendChild(checkBoxLabel);
+    });
+  }
+
   // Init task lists
   loadTaskListToModal();
+  loadTaskListToSideBar();
 
   function attachEventToOptions() {
     const taskListOptions = document.querySelectorAll(
