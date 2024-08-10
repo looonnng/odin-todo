@@ -28,7 +28,7 @@ export const createTaskList = (taskListTitle) => {
     'add_task',
     ['size-27'],
   );
-  const myTaskContainer = createTaskContainer();
+  const myTaskContainer = createTaskContainer(taskListTitle);
 
   addTaskButton.appendChild(createMyElement('p', [], 'Add a task'));
   todoCard.append(todoCardTop, addTaskButton, myTaskContainer);
@@ -70,8 +70,9 @@ function createButton(
 }
 
 // Task Container
-function createTaskContainer() {
+function createTaskContainer(containerTitle) {
   const taskContainer = createMyElement('div', ['todos-card__tasks-container']);
+  taskContainer.dataset.taskContainer = containerTitle.toLowerCase(); // task container dataset is lowercase string
   return taskContainer;
 }
 
