@@ -72,7 +72,7 @@ function createButton(
 // Task Container
 function createTaskContainer(containerTitle) {
   const taskContainer = createMyElement('div', ['todos-card__tasks-container']);
-  taskContainer.dataset.taskContainer = containerTitle.toLowerCase(); // task container dataset is lowercase string
+  taskContainer.dataset.taskContainer = containerTitle;
   return taskContainer;
 }
 
