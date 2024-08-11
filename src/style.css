@@ -236,6 +236,10 @@ a:active {
   text-align: left;
 }
 
+.side-menu__checkbox {
+  margin-right: 10px;
+}
+
 /* Task section */
 .task {
   gap: 0.5rem;
