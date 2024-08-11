@@ -323,15 +323,15 @@ a:active {
   gap: 1rem;
 }
 
-.dialog__task-title {
+.dialog__title {
   font-size: 1.25rem;
   line-height: 1.25rem;
   width: 100%;
   border: none;
-  border-bottom: 1px solid rgb(60, 64, 67);
+  border-bottom: 1px solid rgb(88, 105, 117);
 }
 
-.dialog__task-title:focus,
+.dialog__title:focus,
 .dialog__task-due-date:focus {
   outline: none;
   border-bottom: 2px solid var(--primary-color);
