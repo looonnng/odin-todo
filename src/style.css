@@ -195,8 +195,7 @@ a:active {
 .todos-card__add-task-btn:active,
 .done-btn:active,
 .more-options-btn:active,
-.new-list-btn-wrapper:active,
-.side-menu__item:active {
+.side-menu__item:active:not(.new-list-btn-wrapper) {
   opacity: 0.5;
 }
 
