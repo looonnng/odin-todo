@@ -193,7 +193,7 @@
               class="todos-card__tasks-container"
               data-task-container="My Task"
             >
-              <div class="task row">
+              <div class="task row" data-is-completed="no">
                 <div class="done-btn-wrapper">
                   <button class="done-btn">
                     <span class="material-symbols-outlined">circle</span>
@@ -210,6 +210,18 @@
                   </div>
                 </div>
               </div>
+            </div>
+            <div class="todos-card__complete">
+              <div class="complete-dropdown-btn-wrapper row">
+                <button class="complete-dropdown-btn">
+                  <span class="material-symbols-outlined">arrow_right</span>
+                </button>
+                <p class="dropdown-text">Completed Task</p>
+              </div>
+              <div
+                class="todos-card__tasks-container complete-task-container"
+                data-complete-task-container="My Task"
+              ></div>
             </div>
           </div>
         </div>
@@ -229,7 +241,7 @@
               class="todos-card__tasks-container"
               data-task-container="My Task 2"
             >
-              <div class="task row">
+              <div class="task row" data-is-completed="no">
                 <div class="done-btn-wrapper">
                   <button class="done-btn">
                     <span class="material-symbols-outlined">circle</span>
@@ -246,6 +258,18 @@
                   </div>
                 </div>
               </div>
+            </div>
+            <div class="todos-card__complete">
+              <div class="complete-dropdown-btn-wrapper row">
+                <button class="complete-dropdown-btn">
+                  <span class="material-symbols-outlined">arrow_right</span>
+                </button>
+                <p class="dropdown-text">Completed Task</p>
+              </div>
+              <div
+                class="todos-card__tasks-container complete-task-container"
+                data-complete-task-container="My Task 2"
+              ></div>
             </div>
           </div>
         </div>
