@@ -28,10 +28,17 @@ export const createTaskList = (taskListTitle) => {
     'add_task',
     ['size-27'],
   );
+
+  const todoCardComplete = createCompleteSection(taskListTitle);
   const myTaskContainer = createTaskContainer(taskListTitle);
 
   addTaskButton.appendChild(createMyElement('p', [], 'Add a task'));
-  todoCard.append(todoCardTop, addTaskButton, myTaskContainer);
+  todoCard.append(
+    todoCardTop,
+    addTaskButton,
+    myTaskContainer,
+    todoCardComplete,
+  );
   taskListWrapper.appendChild(todoCard);
 
   return taskListWrapper;
@@ -89,9 +96,58 @@ export function createTodo(task) {
     ['size-20'],
   );
 
+  myTask.dataset.isCompleted = 'no';
   taskTodo.append(todoText, moreOptionsBtn);
   doneBtnWrapper.appendChild(doneBtn);
   myTask.append(doneBtnWrapper, taskTodo);
 
+  doneBtn.addEventListener('click', handleClickDoneBtn);
+  function handleClickDoneBtn(event) {
+    if (myTask.dataset.isCompleted === 'yes') {
+      const myContainer = event.currentTarget.closest(
+        '[data-complete-task-container]',
+      );
+      document
+        .querySelector(
+          `[data-task-container="${myContainer.dataset.completeTaskContainer}"]`,
+        )
+        .appendChild(myTask);
+      myTask.dataset.isCompleted = 'no';
+    } else {
+      const myContainer = event.currentTarget.closest('[data-task-container]');
+      document
+        .querySelector(
+          `[data-complete-task-container="${myContainer.dataset.taskContainer}"]`,
+        )
+        .appendChild(myTask);
+      myTask.dataset.isCompleted = 'yes';
+    }
+  }
+
   return myTask;
+}
+
+function createCompleteSection(containerTitle) {
+  const completeWrapper = createMyElement('div', ['todos-card__complete']);
+  const completeDropdownBtnWrapper = createMyElement('div', [
+    'complete-dropdown-btn-wrapper',
+    'row',
+  ]);
+  const completeDropdownBtn = createButton(
+    ['complete-dropdown-btn'],
+    'arrow_right',
+    [],
+  );
+  const completeDropdownText = createMyElement(
+    'p',
+    ['dropdown-text'],
+    'Completed Task',
+  );
+
+  const completeTaskContainer = createTaskContainer(containerTitle);
+  completeTaskContainer.dataset.completeTaskContainer = containerTitle;
+
+  completeDropdownBtnWrapper.append(completeDropdownBtn, completeDropdownText);
+  completeWrapper.append(completeDropdownBtnWrapper, completeTaskContainer);
+  return completeWrapper;
 }
