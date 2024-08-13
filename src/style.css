@@ -1,6 +1,6 @@
 /* Imports */
 
-@import '@material-design-icons/font';
+/* @import '@material-design-icons/font'; */
 
 /* Global */
 
@@ -186,16 +186,17 @@ a:active {
 }
 
 .todos-card__add-task-btn:hover,
-.more-options-btn:hover,
 .new-list-btn-wrapper:hover,
 .side-menu__item:hover,
-.complete-dropdown-btn-wrapper:hover {
+.complete-dropdown-btn-wrapper:hover,
+.task__todo:hover {
   background: #eee;
 }
 
 .todos-card__add-task-btn:active,
 .done-btn:active,
 .more-options-btn:active,
+.task__todo-delete-btn:active,
 .side-menu__item:active:not(.new-list-btn-wrapper),
 .complete-dropdown-btn-wrapper:active {
   opacity: 0.5;
@@ -253,20 +254,36 @@ a:active {
 
 .task__todo {
   flex: 1;
+  gap: 1rem;
 }
 
 .task__todo-text {
-  margin-right: auto;
+  align-content: center;
 }
 
+.btns-wrapper {
+  margin-left: auto;
+  gap: 0.5rem;
+}
+
+.task__todo-delete-btn,
 .more-options-btn {
-  align-self: flex-start;
+  align-self: center;
+  padding: 0.1rem;
+}
+
+.task__todo-delete-btn:hover,
+.more-options-btn:hover {
+  background-color: #bdbdbd;
+  border-radius: 100%;
+  padding: 0.1rem;
 }
 
 .done-btn,
 .more-options-btn,
 .side-menu__new-list-btn,
-.complete-dropdown-btn {
+.complete-dropdown-btn,
+.task__todo-delete-btn {
   background-color: transparent;
   border: none;
 }
