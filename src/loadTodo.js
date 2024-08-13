@@ -90,16 +90,20 @@ export function createTodo(task) {
   const doneBtn = createButton(['done-btn'], 'circle', []);
   const taskTodo = createMyElement('div', ['task__todo', 'row']);
   const todoText = createMyElement('p', ['task__todo-text'], task);
+  const btnsWrapper = createMyElement('div', ['btns-wrapper', 'row']);
+  const deleteBtn = createButton(['task__todo-delete-btn'], 'delete', []);
   const moreOptionsBtn = createButton(
     ['task__todo-more-options', 'more-options-btn'],
     'more_vert',
-    ['size-20'],
+    [],
   );
 
-  myTask.dataset.isCompleted = 'no';
-  taskTodo.append(todoText, moreOptionsBtn);
+  btnsWrapper.append(deleteBtn, moreOptionsBtn);
+  taskTodo.append(todoText, btnsWrapper);
   doneBtnWrapper.appendChild(doneBtn);
   myTask.append(doneBtnWrapper, taskTodo);
+
+  myTask.dataset.isCompleted = 'no';
 
   doneBtn.addEventListener('click', handleClickDoneBtn);
   function handleClickDoneBtn(event) {
@@ -151,3 +155,5 @@ function createCompleteSection(containerTitle) {
   completeWrapper.append(completeDropdownBtnWrapper, completeTaskContainer);
   return completeWrapper;
 }
+
+function hoverTodo() {}
