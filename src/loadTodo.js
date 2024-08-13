@@ -106,6 +106,8 @@ export function createTodo(task) {
   myTask.dataset.isCompleted = 'no';
 
   doneBtn.addEventListener('click', handleClickDoneBtn);
+  deleteBtn.addEventListener('click', () => myTask.remove()); // delete todo
+
   function handleClickDoneBtn(event) {
     if (myTask.dataset.isCompleted === 'yes') {
       const myContainer = event.currentTarget.closest(
@@ -155,5 +157,3 @@ function createCompleteSection(containerTitle) {
   completeWrapper.append(completeDropdownBtnWrapper, completeTaskContainer);
   return completeWrapper;
 }
-
-function hoverTodo() {}
