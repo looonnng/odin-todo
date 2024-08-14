@@ -166,10 +166,6 @@ const modalModule = () => {
     });
   }
 
-  // Init task lists
-  loadTaskListToModal();
-  loadTaskListToSideBar();
-
   function attachEventToOptions() {
     const taskListOptions = document.querySelectorAll(
       '[data-task-list-option]',
