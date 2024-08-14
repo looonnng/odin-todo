@@ -232,6 +232,41 @@ const modalModule = () => {
 
     return currTaskContainer;
   }
+
+  function populateStorage() {
+    for (let i = 0; i < localStorage.length; i++) {
+      const projectString = localStorage.key(i);
+      const projectObject = JSON.parse(localStorage.getItem(projectString));
+      const projectTasksArray = projectObject.projectTasks;
+      const projectListTitle = projectObject.projectTitle;
+
+      const myTaskList = createTaskList(projectListTitle);
+      const checkBox = createMyElement('input', ['side-menu__checkbox']);
+      const checkBoxLabel = createMyElement(
+        'label',
+        ['side-menu__item'],
+        projectListTitle,
+      );
+
+      checkBox.type = 'checkbox';
+      checkBox.id = projectListTitle;
+      checkBoxLabel.htmlFor = projectListTitle;
+      checkBoxLabel.prepend(checkBox);
+
+      document.querySelector('.task-lists-container').appendChild(myTaskList);
+      document.querySelector('.list-container').appendChild(checkBoxLabel);
+
+      projectTasksArray.forEach((task) => {
+        const myTask = createTodo(task);
+        document
+          .querySelector(`[data-task-container="${projectListTitle}"]`)
+          .appendChild(myTask);
+      });
+    }
+    loadTaskListToModal();
+  }
+
+  populateStorage();
 };
 
 export default modalModule;
