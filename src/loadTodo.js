@@ -97,13 +97,12 @@ export function createTodo(task) {
     'more_vert',
     [],
   );
+  myTask.dataset.isCompleted = 'no'; // init data
 
   btnsWrapper.append(deleteBtn, moreOptionsBtn);
   taskTodo.append(todoText, btnsWrapper);
   doneBtnWrapper.appendChild(doneBtn);
   myTask.append(doneBtnWrapper, taskTodo);
-
-  myTask.dataset.isCompleted = 'no';
 
   doneBtn.addEventListener('click', handleClickDoneBtn);
   deleteBtn.addEventListener('click', () => myTask.remove()); // delete todo
