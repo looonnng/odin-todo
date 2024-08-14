@@ -105,10 +105,26 @@ export function createTodo(task) {
   myTask.append(doneBtnWrapper, taskTodo);
 
   doneBtn.addEventListener('click', handleClickDoneBtn);
-  deleteBtn.addEventListener('click', () => {
+  deleteBtn.addEventListener('click', handleDeleteBtn);
+
+  function handleDeleteBtn(event) {
+    const currentProjectTitle = event.currentTarget.closest(
+      '[data-task-container]',
+    ).dataset.taskContainer;
+
+    const storageProject = JSON.parse(
+      localStorage.getItem(currentProjectTitle),
+    );
+
+    storageProject.projectTasks.splice(
+      storageProject.projectTasks.indexOf(currentProjectTitle),
+      1,
+    );
+
+    localStorage.setItem(currentProjectTitle, JSON.stringify(storageProject));
+
     myTask.remove();
-    localStorage.removeItem(task);
-  });
+  }
 
   function handleClickDoneBtn(event) {
     if (myTask.dataset.isCompleted === 'yes') {
