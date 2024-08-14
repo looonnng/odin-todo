@@ -67,14 +67,26 @@ const modalModule = () => {
         alert('please enter valid date');
       }
 
+      const currentTasks = getTask();
+
+      if (currentTasks.includes(taskTitle.value)) {
+        alert('This task is already created!');
+        return;
+      }
+
       addTodoToTaskList(taskTitle.value);
+      localStorage.setItem(taskTitle.value, taskTitle.value);
+
     } else {
       const currentTaskList = getTaskList();
+
       if (currentTaskList.includes(listTitle.value)) {
         alert('This list is already created!');
         return;
       }
+
       const newTaskList = createTaskList(listTitle.value);
+      localStorage.setItem(listTitle.value, newTaskList.innerHTML);
       taskListsContainer.appendChild(newTaskList);
       loadTaskListToModal();
       loadTaskListToSideBar();
@@ -123,8 +135,14 @@ const modalModule = () => {
     const taskLists = [...document.querySelectorAll('.todos-card__name')].map(
       (listName) => listName.textContent,
     );
-
     return taskLists;
+  }
+
+  function getTask() {
+    const tasks = [...document.querySelectorAll('.task__todo-text')].map(
+      (taskName) => taskName.textContent,
+    );
+    return tasks;
   }
 
   function loadTaskListToModal() {
