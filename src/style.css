@@ -266,10 +266,17 @@ a:active {
   gap: 0.5rem;
 }
 
+/* visibility is used instead of display none */
 .task__todo-delete-btn,
 .more-options-btn {
+  visibility: hidden;
   align-self: center;
   padding: 0.1rem;
+}
+
+.task__todo:hover .task__todo-delete-btn,
+.task__todo:hover .more-options-btn {
+  visibility: visible;
 }
 
 .task__todo-delete-btn:hover,
