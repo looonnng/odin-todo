@@ -105,7 +105,10 @@ export function createTodo(task) {
   myTask.append(doneBtnWrapper, taskTodo);
 
   doneBtn.addEventListener('click', handleClickDoneBtn);
-  deleteBtn.addEventListener('click', () => myTask.remove()); // delete todo
+  deleteBtn.addEventListener('click', () => {
+    myTask.remove();
+    localStorage.removeItem(task);
+  });
 
   function handleClickDoneBtn(event) {
     if (myTask.dataset.isCompleted === 'yes') {
