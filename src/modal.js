@@ -75,7 +75,18 @@ const modalModule = () => {
       }
 
       addTodoToTaskList(taskTitle.value);
-      localStorage.setItem(taskTitle.value, taskTitle.value);
+
+      const currentProjectTitle = document.querySelector(
+        '[data-current-task-list]',
+      ).dataset.currentTaskList;
+
+      const storageProject = JSON.parse(
+        localStorage.getItem(currentProjectTitle),
+      );
+
+      storageProject.projectTasks.push(taskTitle.value);
+
+      localStorage.setItem(currentProjectTitle, JSON.stringify(storageProject));
     } else {
       const currentTaskList = getTaskList();
 
