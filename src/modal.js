@@ -85,7 +85,14 @@ const modalModule = () => {
       }
 
       const newTaskList = createTaskList(listTitle.value);
-      localStorage.setItem(listTitle.value, listTitle.value);
+
+      const newTaskListObject = {
+        projectTitle: listTitle.value,
+        projectTasks: [],
+      };
+
+      localStorage.setItem(listTitle.value, JSON.stringify(newTaskListObject));
+
       taskListsContainer.appendChild(newTaskList);
       loadTaskListToModal();
       loadTaskListToSideBar();
