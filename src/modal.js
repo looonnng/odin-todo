@@ -76,7 +76,6 @@ const modalModule = () => {
 
       addTodoToTaskList(taskTitle.value);
       localStorage.setItem(taskTitle.value, taskTitle.value);
-
     } else {
       const currentTaskList = getTaskList();
 
@@ -86,7 +85,7 @@ const modalModule = () => {
       }
 
       const newTaskList = createTaskList(listTitle.value);
-      localStorage.setItem(listTitle.value, newTaskList.innerHTML);
+      localStorage.setItem(listTitle.value, listTitle.value);
       taskListsContainer.appendChild(newTaskList);
       loadTaskListToModal();
       loadTaskListToSideBar();
