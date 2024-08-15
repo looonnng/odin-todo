@@ -193,6 +193,7 @@ a:active {
   background: #eee;
 }
 
+.todos-card__list-delete-btn:active,
 .todos-card__add-task-btn:active,
 .done-btn:active,
 .more-options-btn:active,
@@ -267,23 +268,25 @@ a:active {
 }
 
 /* visibility is used instead of display none */
-.task__todo-delete-btn,
+.delete-btn,
 .more-options-btn {
   align-self: center;
   padding: 0.1rem;
 }
 
-.task__todo-delete-btn,
-.task__todo-more-options {
+.delete-btn,
+.more-options-btn {
   visibility: hidden;
 }
 
+.todos-card:hover .todos-card__list-more-options,
+.todos-card__top:hover .todos-card__list-delete-btn,
 .task__todo:hover .task__todo-delete-btn,
 .task__todo:hover .task__todo-more-options {
   visibility: visible;
 }
 
-.task__todo-delete-btn:hover,
+.delete-btn:hover,
 .more-options-btn:hover {
   background-color: #bdbdbd;
   border-radius: 100%;
@@ -294,7 +297,7 @@ a:active {
 .more-options-btn,
 .side-menu__new-list-btn,
 .complete-dropdown-btn,
-.task__todo-delete-btn {
+.delete-btn {
   background-color: transparent;
   border: none;
 }
