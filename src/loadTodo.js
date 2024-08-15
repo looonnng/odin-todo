@@ -66,6 +66,19 @@ function createTodoCardTop(taskListTitle) {
 
   btnsWrapper.append(deleteListBtn, todoCardMoreOptionBtn);
   todoCardTop.append(todoCardName, btnsWrapper);
+
+  deleteListBtn.addEventListener('click', handleDeleteListBtn);
+
+  function handleDeleteListBtn(event) {
+    const currentProjectTitle = taskListTitle;
+    const storageProject = JSON.parse(
+      localStorage.getItem(currentProjectTitle),
+    );
+
+    localStorage.removeItem(currentProjectTitle);
+    event.target.closest('.task-lists-container__wrapper').remove();
+  }
+
   return todoCardTop;
 }
 
