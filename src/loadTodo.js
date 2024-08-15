@@ -52,13 +52,20 @@ function createTodoCardTop(taskListTitle) {
     ['todos-card__name'],
     taskListTitle,
   );
+  const btnsWrapper = createMyElement('div', ['btns-wrapper', 'row']);
   const todoCardMoreOptionBtn = createButton(
     ['todos-card__list-more-options', 'more-options-btn'],
     'more_vert',
     ['size-20'],
   );
+  const deleteListBtn = createButton(
+    ['todos-card__list-delete-btn', 'delete-btn'],
+    'delete',
+    [],
+  );
 
-  todoCardTop.append(todoCardName, todoCardMoreOptionBtn);
+  btnsWrapper.append(deleteListBtn, todoCardMoreOptionBtn);
+  todoCardTop.append(todoCardName, btnsWrapper);
   return todoCardTop;
 }
 
@@ -91,7 +98,11 @@ export function createTodo(task) {
   const taskTodo = createMyElement('div', ['task__todo', 'row']);
   const todoText = createMyElement('p', ['task__todo-text'], task);
   const btnsWrapper = createMyElement('div', ['btns-wrapper', 'row']);
-  const deleteBtn = createButton(['task__todo-delete-btn'], 'delete', []);
+  const deleteBtn = createButton(
+    ['task__todo-delete-btn', 'delete-btn'],
+    'delete',
+    [],
+  );
   const moreOptionsBtn = createButton(
     ['task__todo-more-options', 'more-options-btn'],
     'more_vert',
