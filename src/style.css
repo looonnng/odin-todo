@@ -420,3 +420,8 @@ a:active {
 .dropdown-text {
   align-content: center;
 }
+
+.delete-list-modal {
+  text-align: center;
+  padding: 1rem;
+}
