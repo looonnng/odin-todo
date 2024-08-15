@@ -14,6 +14,39 @@ const modalModule = () => {
   const listTitle = document.querySelector('#new-list-title');
   const dueDate = document.querySelector('.dialog__task-due-date');
   const taskListsContainer = document.querySelector('.task-lists-container');
+  const deleteListModal = document.querySelector('.delete-list-modal');
+
+  // init var
+  let listTobeDeleted;
+
+  taskListsContainer.addEventListener('click', (event) => {
+    if (event.target.parentElement.matches('.todos-card__list-delete-btn')) {
+      deleteListModal.showModal();
+      listTobeDeleted = event.target.closest('div').previousElementSibling;
+    }
+
+    if (event.target.textContent === 'Yes') {
+      listTobeDeleted.closest('.task-lists-container__wrapper').remove();
+      localStorage.removeItem(listTobeDeleted.textContent);
+
+      const currentDropupList = document.querySelector(
+        '[data-current-task-list]',
+      );
+
+      currentDropupList.dataset.currentTaskList =
+        getTaskList().shift() || 'Please create a list';
+      currentDropupList.textContent =
+        getTaskList().shift() || 'Please create a list';
+
+      loadTaskListToModal();
+      loadTaskListToSideBar();
+      deleteListModal.close();
+    } else if (event.target.textContent === 'Cancel') {
+      deleteListModal.close();
+    }
+
+    handleClickTaskModal(event);
+  });
 
   createTaskBtn.addEventListener('click', handleCreateTaskBtn);
   createListBtn.addEventListener('click', handleCreateListBtn);
@@ -166,6 +199,7 @@ const modalModule = () => {
     const currentDisplayTaskList = document.querySelector(
       '[data-current-task-list]',
     ).dataset.currentTaskList;
+
     const taskListNames = getTaskList().filter(
       (tasklist) => tasklist != currentDisplayTaskList,
     );
