@@ -179,6 +179,19 @@ const modalModule = () => {
       currentSaveBtn.disabled = false;
       currentSaveBtn.classList.add('save');
     }
+
+    isListContainerEmpty();
+  }
+
+  function isListContainerEmpty() {
+    const currentDropupTaskList = document.querySelector(
+      '[data-current-task-list]',
+    );
+
+    if (!localStorage.getItem(currentDropupTaskList.dataset.currentTaskList)) {
+      taskModal.querySelector('[data-save-btn]').disabled = true;
+      taskModal.querySelector('[data-save-btn]').classList.remove('save');
+    }
   }
 
   function getTaskList() {
