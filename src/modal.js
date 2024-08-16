@@ -91,6 +91,7 @@ const modalModule = () => {
   function handleModalSaveBtn(event) {
     const currentModal = event.target.closest('.modal');
 
+    // create Task
     if ([...currentModal.classList].includes('create-new-task')) {
       let due = dueDate.valueAsDate;
 
@@ -120,6 +121,8 @@ const modalModule = () => {
       storageProject.projectTasks.push(taskTitle.value);
 
       localStorage.setItem(currentProjectTitle, JSON.stringify(storageProject));
+
+      // create List
     } else {
       const currentTaskList = getTaskList();
 
@@ -138,8 +141,19 @@ const modalModule = () => {
       localStorage.setItem(listTitle.value, JSON.stringify(newTaskListObject));
 
       taskListsContainer.appendChild(newTaskList);
-      loadTaskListToModal();
-      loadTaskListToSideBar();
+
+      // use new created list for current dropup btn
+      if (currentTaskList.length === 0) {
+        const currentDropupList = document.querySelector(
+          '[data-current-task-list]',
+        );
+
+        currentDropupList.dataset.currentTaskList = listTitle.value;
+        currentDropupList.textContent = listTitle.value;
+      } else {
+        loadTaskListToModal();
+        loadTaskListToSideBar();
+      }
     }
 
     currentModal.querySelector('.modal__form').reset();
