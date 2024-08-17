@@ -125,21 +125,32 @@ export function createTodo(task) {
       '[data-task-container]',
     ).dataset.taskContainer;
 
-    const storageProject = JSON.parse(
+    const storageProjectObject = JSON.parse(
       localStorage.getItem(currentProjectTitle),
     );
 
-    storageProject.projectTasks.splice(
-      storageProject.projectTasks.indexOf(currentProjectTitle),
+    storageProjectObject.projectTasks.splice(
+      storageProjectObject.projectTasks.indexOf(currentProjectTitle),
       1,
     );
 
-    localStorage.setItem(currentProjectTitle, JSON.stringify(storageProject));
+    localStorage.setItem(
+      currentProjectTitle,
+      JSON.stringify(storageProjectObject),
+    );
 
     myTask.remove();
   }
 
   function handleClickDoneBtn(event) {
+    const currentProjectTitle = event.currentTarget.closest(
+      '[data-task-container]',
+    ).dataset.taskContainer;
+
+    const currentTaskObject = JSON.parse(
+      localStorage.getItem(currentProjectTitle),
+    ).projectTasks.find((taskObj) => taskObj.taskTitle === task);
+
     if (myTask.dataset.isCompleted === 'yes') {
       const myContainer = event.currentTarget.closest(
         '[data-complete-task-container]',
@@ -149,7 +160,25 @@ export function createTodo(task) {
           `[data-task-container="${myContainer.dataset.completeTaskContainer}"]`,
         )
         .appendChild(myTask);
+
+      todoText.classList.toggle('done-text');
       myTask.dataset.isCompleted = 'no';
+      currentTaskObject.taskStatus = 'no';
+
+      const currentProjectObject = JSON.parse(
+        localStorage.getItem(currentProjectTitle),
+      );
+
+      const taskToBeReplace = currentProjectObject.projectTasks.find(
+        (taskObj) => taskObj.taskTitle === task,
+      );
+
+      Object.assign(taskToBeReplace, currentTaskObject);
+
+      localStorage.setItem(
+        currentProjectTitle,
+        JSON.stringify(currentProjectObject),
+      );
     } else {
       const myContainer = event.currentTarget.closest('[data-task-container]');
       document
@@ -157,7 +186,25 @@ export function createTodo(task) {
           `[data-complete-task-container="${myContainer.dataset.taskContainer}"]`,
         )
         .appendChild(myTask);
+
+      todoText.classList.toggle('done-text');
       myTask.dataset.isCompleted = 'yes';
+      currentTaskObject.taskStatus = 'yes';
+
+      const currentProjectObject = JSON.parse(
+        localStorage.getItem(currentProjectTitle),
+      );
+
+      const taskToBeReplace = currentProjectObject.projectTasks.find(
+        (taskObj) => taskObj.taskTitle === task,
+      );
+
+      Object.assign(taskToBeReplace, currentTaskObject);
+
+      localStorage.setItem(
+        currentProjectTitle,
+        JSON.stringify(currentProjectObject),
+      );
     }
   }
 
@@ -187,4 +234,18 @@ function createCompleteSection(containerTitle) {
   completeDropdownBtnWrapper.append(completeDropdownBtn, completeDropdownText);
   completeWrapper.append(completeDropdownBtnWrapper, completeTaskContainer);
   return completeWrapper;
+}
+
+function updateLocalTaskStatus(event, currentTask) {
+  const currentProjectObject = JSON.parse(
+    localStorage.getItem(currentProjectTitle),
+  );
+
+  const taskToBeReplace = currentProjectObject.projectTasks.find(
+    (taskObj) => taskObj.taskTitle === currentTask,
+  );
+
+  Object.assign(taskToBeReplace, currentTaskObject);
+
+  localStorage.setItem(projectTitle, JSON.stringify(currentProjectObject));
 }
