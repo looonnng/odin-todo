@@ -334,6 +334,8 @@ const modalModule = () => {
             .appendChild(myTask);
         } else if (task.taskStatus === 'yes') {
           myTask.dataset.isCompleted = 'yes';
+          myTask.querySelector('.done-btn').firstChild.textContent =
+            'check_circle';
           myTask
             .querySelector('.task__todo-text')
             .classList.toggle('done-text');
