@@ -19,7 +19,10 @@ import modalModule from './modal';
     };
   }
 
-  localStorage.setItem('My Task', JSON.stringify(localProjectObject));
+  // only init default list when there are none in local
+  if (localStorage.length === 0) {
+    localStorage.setItem('My Task', JSON.stringify(localProjectObject));
+  }
 })();
 
 // Init module
