@@ -4,18 +4,22 @@ import modalModule from './modal';
 
 // Init default lists && local storage
 (() => {
-  const myTaskObject = {
-    taskTitle: 'lorem',
-    taskStatus: 'no',
-    taskDue: 'WIP',
-  };
+  let localProjectObject = JSON.parse(localStorage.getItem('My Task'));
 
-  const myTaskListObject = {
-    projectTitle: 'My Task',
-    projectTasks: [myTaskObject],
-  };
+  if (!localProjectObject) {
+    const myTaskObject = {
+      taskTitle: 'lorem',
+      taskStatus: 'no',
+      taskDue: 'WIP',
+    };
 
-  localStorage.setItem('My Task', JSON.stringify(myTaskListObject));
+    localProjectObject = {
+      projectTitle: 'My Task',
+      projectTasks: [myTaskObject],
+    };
+  }
+
+  localStorage.setItem('My Task', JSON.stringify(localProjectObject));
 })();
 
 // Init module
