@@ -10,7 +10,7 @@ const modalModule = () => {
   const cancelBtns = document.querySelectorAll('[data-cancel-btn]');
   const saveBtns = document.querySelectorAll('[data-save-btn]');
   const dropupBtn = document.querySelector('[data-dropup-btn]');
-  const taskTitle = document.querySelector('#task-title');
+  const taskTitleField = document.querySelector('#task-title');
   const listTitle = document.querySelector('#new-list-title');
   const dueDate = document.querySelector('.dialog__task-due-date');
   const taskListsContainer = document.querySelector('.task-lists-container');
@@ -60,7 +60,7 @@ const modalModule = () => {
   saveBtns.forEach((btn) => btn.addEventListener('click', handleModalSaveBtn));
   dropupBtn.addEventListener('click', (e) => e.preventDefault());
   taskModal.addEventListener('click', handleClickTaskModal);
-  taskTitle.addEventListener('keyup', isInputEmpty);
+  taskTitleField.addEventListener('keyup', isInputEmpty);
 
   listModal.addEventListener('click', handleClickTaskModal);
   listTitle.addEventListener('keyup', isInputEmpty);
@@ -103,12 +103,18 @@ const modalModule = () => {
 
       const currentTasks = getTask();
 
-      if (currentTasks.includes(taskTitle.value)) {
+      if (currentTasks.includes(taskTitleField.value)) {
         alert('This task is already created!');
         return;
       }
 
-      addTodoToTaskList(taskTitle.value);
+      addTodoToTaskList(taskTitleField.value);
+
+      const newTaskObject = {
+        taskTitle: taskTitleField.value,
+        taskStatus: 'no',
+        taskDue: 'WIP',
+      };
 
       const currentProjectTitle = document.querySelector(
         '[data-current-task-list]',
@@ -118,7 +124,7 @@ const modalModule = () => {
         localStorage.getItem(currentProjectTitle),
       );
 
-      storageProject.projectTasks.push(taskTitle.value);
+      storageProject.projectTasks.push(newTaskObject);
 
       localStorage.setItem(currentProjectTitle, JSON.stringify(storageProject));
 
