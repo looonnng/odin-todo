@@ -152,8 +152,7 @@ export function createTodo(task) {
     ).projectTasks.find((taskObj) => taskObj.taskTitle === task);
 
     if (myTask.dataset.isCompleted === 'yes') {
-      event.target.textContent = 'circle';
-
+      event.currentTarget.firstChild.textContent = 'circle';
       const myContainer = event.currentTarget.closest(
         '[data-complete-task-container]',
       );
@@ -183,7 +182,8 @@ export function createTodo(task) {
       );
     } else {
       const myContainer = event.currentTarget.closest('[data-task-container]');
-      event.target.textContent = 'check_circle';
+      event.currentTarget.firstChild.textContent = 'check_circle';
+
       document
         .querySelector(
           `[data-complete-task-container="${myContainer.dataset.taskContainer}"]`,
