@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <title>Project: Todo</title>
+  </head>
+  <body>
+    <header class="header">
+      <nav class="nav row">
+        <ul class="nav__list row nav-left">
+          <li class="nav__item">
+            <a class="nav__link" href="#"
+              ><span class="material-symbols-outlined">menu</span></a
+            >
+          </li>
+          <li class="nav__item">
+            <div class="nav__logo-wrapper">
+              <img
+                class="nav__logo"
+                src="6916239b9fb022a8ef7a.png"
+                alt="todo logo"
+              />
+            </div>
+          </li>
+        </ul>
+        <ul class="nav__list row nav-right">
+          <li class="nav__item">
+            <a class="nav__link" href="#"
+              ><span class="material-symbols-outlined">help</span></a
+            >
+          </li>
+          <li class="nav__item">
+            <a class="nav__link" href="#"
+              ><span class="material-symbols-outlined">settings</span></a
+            >
+          </li>
+          <li class="nav__item row">
+            <div class="nav__switch-page">
+              <a class="nav__link" href="#"
+                ><span class="material-symbols-outlined"
+                  >calendar_month</span
+                ></a
+              >
+            </div>
+            <div class="nav__switch-page">
+              <a class="nav__link" href="#"
+                ><span class="material-symbols-outlined">task_alt</span></a
+              >
+            </div>
+          </li>
+          <li class="nav__item">
+            <a class="nav__link" href="#"
+              ><span class="material-symbols-outlined">apps</span></a
+            >
+          </li>
+          <li class="nav__item">
+            <a class="nav__link" href="#"
+              ><span class="material-symbols-outlined">account_circle</span></a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main class="main row">
+      <aside class="side-menu col">
+        <!-- MODAL Create Task -->
+        <dialog class="modal create-new-task">
+          <div class="modal__header row">
+            <button class="modal__close-btn">
+              <span class="material-symbols-outlined">close</span>
+            </button>
+          </div>
+          <form class="modal__form col" method="dialog">
+            <ul class="dialog__controls-container col">
+              <label for="task-title">
+                <input
+                  class="dialog__title"
+                  id="task-title"
+                  type="text"
+                  placeholder="Add task title"
+                  autocomplete="off"
+                />
+              </label>
+              <label for="task-due-date">
+                <input
+                  type="date"
+                  id="task-due-date"
+                  class="dialog__task-due-date"
+                />
+              </label>
+              <div class="dropup diaglog__select-task-list">
+                <button
+                  data-dropup-btn
+                  data-current-task-list="My Task"
+                  class="dropup-btn"
+                >
+                  My Task
+                </button>
+                <div class="dropup-content"></div>
+              </div>
+            </ul>
+            <div class="dialog__footer row">
+              <button data-cancel-btn class="modal__btn cancel">Cancel</button>
+              <button type="submit" data-save-btn class="modal__btn" disabled>
+                Save
+              </button>
+            </div>
+          </form>
+        </dialog>
+        <button class="create-task-btn">
+          <span class="material-symbols-outlined">stylus</span>Create
+        </button>
+        <ul class="side-menu__list">
+          <li class="side-menu__item">
+            <a href="#" class="side-menu__link"
+              ><span class="material-symbols-outlined">task_alt</span>All
+              tasks</a
+            >
+          </li>
+          <li class="side-menu__item">
+            <a href="#" class="side-menu__link"
+              ><span class="material-symbols-outlined">stars</span>Starred</a
+            >
+          </li>
+        </ul>
+        <div class="side-menu__todos-list-wrapper">
+          <ul class="side-menu__list col">
+            <div class="side-menu__list-title">Lists</div>
+            <div class="list-container col"></div>
+            <li class="side-menu__item new-list-btn-wrapper">
+              <!-- MODAL create new list -->
+              <dialog class="modal create-new-list">
+                <div class="modal__header row">
+                  <button class="modal__close-btn">
+                    <span class="material-symbols-outlined">close</span>
+                  </button>
+                </div>
+                <form class="modal__form col" method="dialog">
+                  <ul class="dialog__controls-container col">
+                    <label for="new-list-title">
+                      <input
+                        class="dialog__title"
+                        id="new-list-title"
+                        type="text"
+                        placeholder="Add list title"
+                        autocomplete="off"
+                      />
+                    </label>
+                  </ul>
+                  <div class="dialog__footer row">
+                    <button data-cancel-btn class="modal__btn cancel">
+                      Cancel
+                    </button>
+                    <button
+                      type="submit"
+                      data-save-btn
+                      class="modal__btn"
+                      disabled
+                    >
+                      Save
+                    </button>
+                  </div>
+                </form>
+              </dialog>
+              <button class="side-menu__new-list-btn">
+                <span class="material-symbols-outlined">add</span>Create new
+                list
+              </button>
+            </li>
+          </ul>
+        </div>
+      </aside>
+      <div class="task-lists-container row">
+        <!-- Delete List Modal -->
+        <dialog class="modal delete-list-modal">
+          <div>Are you sure?</div>
+          <div class="dialog__footer row">
+            <button class="modal__btn cancel">Cancel</button>
+            <button class="modal__btn">Yes</button>
+          </div>
+        </dialog>
+      </div>
+    </main>
+  <script defer src="main.js"></script></body>
+</html>
