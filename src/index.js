@@ -4,9 +4,15 @@ import modalModule from './modal';
 
 // Init default lists && local storage
 (() => {
+  const myTaskObject = {
+    taskTitle: 'lorem',
+    taskStatus: 'no',
+    taskDue: 'WIP',
+  };
+
   const myTaskListObject = {
     projectTitle: 'My Task',
-    projectTasks: ['lorem'],
+    projectTasks: [myTaskObject],
   };
 
   localStorage.setItem('My Task', JSON.stringify(myTaskListObject));
