@@ -49,14 +49,6 @@ span.size-27 {
   font-size: 27px;
   font-variation-settings: 'OPSZ' 27;
 }
-span.size-40 {
-  font-size: 40px;
-  font-variation-settings: 'OPSZ' 40;
-}
-span.size-48 {
-  font-size: 48px;
-  font-variation-settings: 'OPSZ' 48;
-}
 
 /* utility classes */
 .wrapper {
