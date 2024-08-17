@@ -301,6 +301,7 @@ const modalModule = () => {
       const projectTasksArray = projectObject.projectTasks;
       const projectListTitle = projectObject.projectTitle;
 
+      // create list
       const myTaskList = createTaskList(projectListTitle);
       const checkBox = createMyElement('input', ['side-menu__checkbox']);
       const checkBoxLabel = createMyElement(
@@ -317,13 +318,24 @@ const modalModule = () => {
       document.querySelector('.task-lists-container').appendChild(myTaskList);
       document.querySelector('.list-container').appendChild(checkBoxLabel);
 
+      // create task
       projectTasksArray.forEach((task) => {
-        const myTask = createTodo(task);
-        document
-          .querySelector(`[data-task-container="${projectListTitle}"]`)
-          .appendChild(myTask);
+        const myTask = createTodo(task.taskTitle);
+
+        if (task.taskStatus === 'no') {
+          document
+            .querySelector(`[data-task-container="${projectListTitle}"]`)
+            .appendChild(myTask);
+        } else if (task.taskStatus === 'yes') {
+          document
+            .querySelector(
+              `[data-complete-task-container="${projectListTitle}"]`,
+            )
+            .appendChild(myTask);
+        }
       });
     }
+
     loadTaskListToModal();
   }
 
