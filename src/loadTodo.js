@@ -93,11 +93,11 @@ function createTaskContainer(containerTitle) {
 }
 
 // Todo item
-export function createTodo(task) {
+export function createTodo(task, due) {
   const myTask = createMyElement('div', ['task', 'row']);
   const doneBtnWrapper = createMyElement('div', ['done-btn-wrapper']);
   const doneBtn = createButton(['done-btn'], 'circle', []);
-  const taskTodo = createMyElement('div', ['task__todo', 'row']);
+  const taskTodo = createMyElement('div', ['task__todo', 'col']);
   const todoText = createMyElement('p', ['task__todo-text'], task);
   const btnsWrapper = createMyElement('div', ['btns-wrapper', 'row']);
   const deleteBtn = createButton(
@@ -110,12 +110,18 @@ export function createTodo(task) {
     'more_vert',
     [],
   );
-  myTask.dataset.isCompleted = 'no'; // init data
+  const wrapper = createMyElement('div', ['row']);
+  const dueDateWrapper = createMyElement('div', ['due-date-wrapper']);
+  const dueDate = createMyElement('div', ['due-date'], due);
 
+  dueDateWrapper.appendChild(dueDate);
+  wrapper.append(todoText, btnsWrapper);
   btnsWrapper.append(deleteBtn, moreOptionsBtn);
-  taskTodo.append(todoText, btnsWrapper);
+  taskTodo.append(wrapper, dueDateWrapper);
   doneBtnWrapper.appendChild(doneBtn);
   myTask.append(doneBtnWrapper, taskTodo);
+
+  myTask.dataset.isCompleted = 'no'; // init data
 
   doneBtn.addEventListener('click', handleClickDoneBtn);
   deleteBtn.addEventListener('click', handleDeleteBtn);
