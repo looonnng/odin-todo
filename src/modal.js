@@ -347,6 +347,15 @@ const modalModule = () => {
       });
     }
 
+    const currentDropupList = document.querySelector(
+      '[data-current-task-list]',
+    );
+
+    currentDropupList.dataset.currentTaskList =
+      getTaskList().shift() || 'Please create a list';
+    currentDropupList.textContent =
+      getTaskList().shift() || 'Please create a list';
+
     loadTaskListToModal();
   }
 
