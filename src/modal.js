@@ -108,7 +108,7 @@ const modalModule = () => {
         return;
       }
 
-      addTodoToTaskList(taskTitleField.value);
+      addTodoToTaskList(taskTitleField.value, due);
 
       const newTaskObject = {
         taskTitle: taskTitleField.value,
@@ -287,8 +287,8 @@ const modalModule = () => {
   }
 
   // add todo to correct task list
-  function addTodoToTaskList(task) {
-    const myTodo = createTodo(task);
+  function addTodoToTaskList(task, due) {
+    const myTodo = createTodo(task, due);
     const currTaskList = document.querySelector('[data-current-task-list]')
       .dataset.currentTaskList;
     const currTaskContainer = document.querySelector(
@@ -326,7 +326,7 @@ const modalModule = () => {
 
       // create task
       projectTasksArray.forEach((task) => {
-        const myTask = createTodo(task.taskTitle);
+        const myTask = createTodo(task.taskTitle, task.taskDue);
 
         if (task.taskStatus === 'no') {
           document
