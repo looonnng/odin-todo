@@ -7,10 +7,14 @@ import modalModule from './modal';
   let localProjectObject = JSON.parse(localStorage.getItem('My Task'));
 
   if (!localProjectObject) {
+    const today = new Date();
+
     const myTaskObject = {
       taskTitle: 'lorem',
       taskStatus: 'no',
-      taskDue: 'WIP',
+      taskDue: new Date(
+        Date.UTC(today.getFullYear(), today.getMonth(), today.getDate()),
+      ),
     };
 
     localProjectObject = {
