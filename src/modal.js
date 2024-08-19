@@ -12,7 +12,6 @@ const modalModule = () => {
   const dropupBtn = document.querySelector('[data-dropup-btn]');
   const taskTitleField = document.querySelector('#task-title');
   const listTitle = document.querySelector('#new-list-title');
-  const dueDate = document.querySelector('.dialog__task-due-date');
   const taskListsContainer = document.querySelector('.task-lists-container');
   const deleteListModal = document.querySelector('.delete-list-modal');
 
@@ -71,6 +70,7 @@ const modalModule = () => {
   }
 
   function handleCreateTaskBtn(event) {
+    const dueDate = document.querySelector('.dialog__task-due-date');
     taskModal.showModal();
 
     // dueDate is not accurate without UTC Date
@@ -93,15 +93,11 @@ const modalModule = () => {
 
     // create Task
     if ([...currentModal.classList].includes('create-new-task')) {
-      let due = dueDate.valueAsDate;
-
-      if (isValid(toDate(due))) {
-        due = formatDistanceToNow(dueDate.value);
-      } else {
-        alert('please enter valid date');
-      }
-
+      const dueDate = document.querySelector('.dialog__task-due-date');
+      const due = dueDate.value ? formatDistanceToNow(dueDate.valueAsDate) : '';
       const currentTasks = getTask();
+
+      if (dueDate.validationMessage) return;
 
       if (currentTasks.includes(taskTitleField.value)) {
         alert('This task is already created!');
@@ -113,7 +109,7 @@ const modalModule = () => {
       const newTaskObject = {
         taskTitle: taskTitleField.value,
         taskStatus: 'no',
-        taskDue: 'WIP',
+        taskDue: dueDate.value,
       };
 
       const currentProjectTitle = document.querySelector(
@@ -326,7 +322,9 @@ const modalModule = () => {
 
       // create task
       projectTasksArray.forEach((task) => {
-        const myTask = createTodo(task.taskTitle, task.taskDue);
+        const due = task.taskDue ? formatDistanceToNow(task.taskDue) : '';
+
+        const myTask = createTodo(task.taskTitle, due);
 
         if (task.taskStatus === 'no') {
           document
