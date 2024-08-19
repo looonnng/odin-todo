@@ -1,4 +1,4 @@
-import { formatDistanceToNow, isValid, toDate } from 'date-fns';
+import { formatDistanceToNow } from 'date-fns';
 import { createMyElement, createTodo, createTaskList } from './loadTodo';
 
 const modalModule = () => {
