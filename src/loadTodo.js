@@ -244,17 +244,3 @@ function createCompleteSection(containerTitle) {
   completeWrapper.append(completeDropdownBtnWrapper, completeTaskContainer);
   return completeWrapper;
 }
-
-function updateLocalTaskStatus(event, currentTask) {
-  const currentProjectObject = JSON.parse(
-    localStorage.getItem(currentProjectTitle),
-  );
-
-  const taskToBeReplace = currentProjectObject.projectTasks.find(
-    (taskObj) => taskObj.taskTitle === currentTask,
-  );
-
-  Object.assign(taskToBeReplace, currentTaskObject);
-
-  localStorage.setItem(projectTitle, JSON.stringify(currentProjectObject));
-}
