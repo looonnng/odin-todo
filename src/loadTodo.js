@@ -238,6 +238,7 @@ function createCompleteSection(containerTitle) {
   );
 
   const completeTaskContainer = createTaskContainer(containerTitle);
+  completeTaskContainer.classList.add('completed-tasks-container');
   completeTaskContainer.dataset.completeTaskContainer = containerTitle;
 
   completeDropdownBtnWrapper.append(completeDropdownBtn, completeDropdownText);
