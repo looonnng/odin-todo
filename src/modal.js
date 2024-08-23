@@ -48,6 +48,31 @@ const modalModule = () => {
       taskModal.showModal();
     }
 
+    // completed task button
+    if (
+      event.target.matches('.complete-dropdown-btn-wrapper') ||
+      event.target.matches('.dropdown-text') ||
+      event.target.parentElement.matches('.complete-dropdown-btn')
+    ) {
+      const completedTaskContainer = event.target.closest(
+        '.complete-dropdown-btn-wrapper',
+      ).nextElementSibling;
+      completedTaskContainer.style.display = completedTaskContainer.style
+        .display
+        ? ''
+        : 'block';
+
+      const dropdownBtnIcon = taskListsContainer.querySelector(
+        '.complete-dropdown-btn',
+      ).firstElementChild;
+
+      dropdownBtnIcon.textContent =
+        dropdownBtnIcon.textContent === 'arrow_drop_down'
+          ? 'arrow_right'
+          : 'arrow_drop_down';
+    }
+
+    // attach event to delete modal
     handleClickTaskModal(event);
   });
 
