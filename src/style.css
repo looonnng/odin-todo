@@ -295,6 +295,11 @@ a:active {
   border-radius: 1rem;
 }
 
+/* hide completed tasks */
+.completed-tasks-container {
+  display: none;
+}
+
 /* Modal */
 
 .modal {
