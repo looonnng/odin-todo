@@ -43,6 +43,11 @@ const modalModule = () => {
       deleteListModal.close();
     }
 
+    // add a task button
+    if (event.target.parentElement.matches('.todos-card__add-task-btn')) {
+      taskModal.showModal();
+    }
+
     handleClickTaskModal(event);
   });
 
