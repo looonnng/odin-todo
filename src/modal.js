@@ -62,9 +62,9 @@ const modalModule = () => {
         ? ''
         : 'block';
 
-      const dropdownBtnIcon = taskListsContainer.querySelector(
-        '.complete-dropdown-btn',
-      ).firstElementChild;
+      const dropdownBtnIcon = event.target
+        .closest('.complete-dropdown-btn-wrapper')
+        .querySelector('span');
 
       dropdownBtnIcon.textContent =
         dropdownBtnIcon.textContent === 'arrow_drop_down'
