@@ -13,7 +13,7 @@ export const createMyElement = (tag, classList = [], text = '') => {
 };
 
 // Create new task list and task container
-export const createTaskList = (taskListTitle) => {
+export const createTaskList = (taskListTitle, completedTasksCount = 0) => {
   const taskListWrapper = createMyElement('div', [
     'task-lists-container__wrapper',
     'row',
@@ -30,7 +30,10 @@ export const createTaskList = (taskListTitle) => {
     ['size-27'],
   );
 
-  const todoCardComplete = createCompleteSection(taskListTitle);
+  const todoCardComplete = createCompleteSection(
+    taskListTitle,
+    completedTasksCount,
+  );
   const myTaskContainer = createTaskContainer(taskListTitle);
 
   addTaskButton.appendChild(createMyElement('p', [], 'Add a task'));
