@@ -296,6 +296,7 @@ a:active {
 }
 
 /* hide completed tasks */
+.hide-container,
 .completed-tasks-container {
   display: none;
 }
