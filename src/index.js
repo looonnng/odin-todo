@@ -1,6 +1,7 @@
 import './style.css';
 import '@material-design-icons/font';
 import modalModule from './modal';
+import renderDOM from './renderDOM';
 
 // Init default lists && local storage
 (() => {
@@ -31,3 +32,4 @@ import modalModule from './modal';
 
 // Init module
 modalModule();
+renderDOM();
