@@ -161,7 +161,7 @@ const modalModule = () => {
         return;
       }
 
-      const newTaskList = createTaskList(listTitle.value);
+      const newTaskList = createTaskList(listTitle.value, 0);
 
       const newTaskListObject = {
         projectTitle: listTitle.value,
@@ -349,9 +349,11 @@ const modalModule = () => {
       const projectObject = JSON.parse(localStorage.getItem(projectString));
       const projectTasksArray = projectObject.projectTasks;
       const projectListTitle = projectObject.projectTitle;
-
+      const completedTasksCount = projectTasksArray.filter(
+        (task) => task.taskStatus === 'yes',
+      ).length;
       // create list
-      const myTaskList = createTaskList(projectListTitle);
+      const myTaskList = createTaskList(projectListTitle, completedTasksCount);
       const checkBox = createMyElement('input', ['side-menu__checkbox']);
       const checkBoxLabel = createMyElement(
         'label',
