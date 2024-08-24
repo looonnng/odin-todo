@@ -130,6 +130,8 @@ export function createTodo(task, due) {
   deleteBtn.addEventListener('click', handleDeleteBtn);
 
   function handleDeleteBtn(event) {
+    updateCompletedTasksCount(event, '-');
+
     const currentProjectTitle = event.currentTarget.closest(
       '[data-task-container]',
     ).dataset.taskContainer;
@@ -152,10 +154,6 @@ export function createTodo(task, due) {
   }
 
   function handleClickDoneBtn(event) {
-    const completedSection = event.target
-      .closest('.task-lists-container__wrapper')
-      .querySelector('.todos-card__complete');
-
     const currentProjectTitle = event.currentTarget.closest(
       '[data-task-container]',
     ).dataset.taskContainer;
@@ -166,11 +164,7 @@ export function createTodo(task, due) {
 
     if (myTask.dataset.isCompleted === 'yes') {
       // remove completed task count
-      const completedTasksCount =
-        completedSection.querySelectorAll('.done-text').length - 1;
-      completedSection.querySelector(
-        '.dropdown-text',
-      ).textContent = `Completed Task (${completedTasksCount})`;
+      updateCompletedTasksCount(event, '-');
 
       event.currentTarget.firstChild.textContent = 'circle';
       const myContainer = event.currentTarget.closest(
@@ -202,11 +196,7 @@ export function createTodo(task, due) {
       );
     } else {
       // Update completed task count
-      const completedTasksCount =
-        completedSection.querySelectorAll('.done-text').length + 1;
-      completedSection.querySelector(
-        '.dropdown-text',
-      ).textContent = `Completed Task (${completedTasksCount})`;
+      updateCompletedTasksCount(event, '+');
 
       const myContainer = event.currentTarget.closest('[data-task-container]');
       event.currentTarget.firstChild.textContent = 'check_circle';
@@ -265,4 +255,21 @@ function createCompleteSection(containerTitle, containerCount = 0) {
   completeDropdownBtnWrapper.append(completeDropdownBtn, completeDropdownText);
   completeWrapper.append(completeDropdownBtnWrapper, completeTaskContainer);
   return completeWrapper;
+}
+
+function updateCompletedTasksCount(event, operator) {
+  const completedSection = event.target
+    .closest('.task-lists-container__wrapper')
+    .querySelector('.todos-card__complete');
+
+  const completedTasksCount =
+    operator === '-'
+      ? completedSection.querySelectorAll('.done-text').length - 1
+      : completedSection.querySelectorAll('.done-text').length + 1;
+
+  completedSection.querySelector(
+    '.dropdown-text',
+  ).textContent = `Completed Task (${
+    completedTasksCount < 0 ? 0 : completedTasksCount
+  })`;
 }
