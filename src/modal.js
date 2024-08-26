@@ -229,8 +229,10 @@ const modalModule = () => {
   // activate save button when form control is filled
   function isInputEmpty(event) {
     const currentModal =
-      event.currentTarget.previousElementSibling ||
-      event.target.closest('.modal');
+      event.target.matches('.create-task-btn') ||
+      event.target.matches('#task-title')
+        ? document.querySelector('.create-new-task')
+        : document.querySelector('.create-new-list');
 
     const currentTitle = currentModal.querySelector('.dialog__title').value;
     const currentSaveBtn = currentModal.querySelector('[data-save-btn]');
