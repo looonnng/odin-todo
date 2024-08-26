@@ -72,7 +72,6 @@ const modalModule = () => {
           : 'arrow_drop_down';
     }
 
-    console.log(event);
     // attach event to delete modal
     handleClickTaskModal(event);
   });
