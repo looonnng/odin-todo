@@ -72,6 +72,7 @@ const modalModule = () => {
           : 'arrow_drop_down';
     }
 
+    console.log(event);
     // attach event to delete modal
     handleClickTaskModal(event);
   });
@@ -204,26 +205,24 @@ const modalModule = () => {
       ) {
         currentModal.close();
       }
+    }
 
-      const dropupContent = document.querySelector('.dropup-content');
+    const dropupContent = document.querySelector('.dropup-content');
 
-      if (event.target.matches('.dropup-btn')) {
-        dropupContent.style.display = dropupContent.style.display
-          ? ''
-          : 'block';
-      } else if (
-        dropupContent.style.display === 'block' &&
-        !event.target.matches('[data-task-list-option]')
-      ) {
+    if (event.target.matches('.dropup-btn')) {
+      dropupContent.style.display = dropupContent.style.display ? '' : 'block';
+    } else if (
+      dropupContent.style.display === 'block' &&
+      !event.target.matches('[data-task-list-option]')
+    ) {
+      dropupContent.style.display = '';
+    }
+
+    dropupContent.addEventListener('click', (e) => {
+      if (e.target.matches('[data-task-list-option]')) {
         dropupContent.style.display = '';
       }
-
-      dropupContent.addEventListener('click', (e) => {
-        if (e.target.matches('[data-task-list-option]')) {
-          dropupContent.style.display = '';
-        }
-      });
-    }
+    });
   }
 
   // activate save button when form control is filled
