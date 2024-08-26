@@ -67,51 +67,51 @@
       </nav>
     </header>
     <main class="main row">
-      <aside class="side-menu col">
-        <!-- MODAL Create Task -->
-        <dialog class="modal create-new-task">
-          <div class="modal__header row">
-            <button class="modal__close-btn">
-              <span class="material-symbols-outlined">close</span>
+      <!-- MODAL Create Task -->
+      <dialog class="modal create-new-task">
+        <div class="modal__header row">
+          <button class="modal__close-btn">
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
+        <form class="modal__form col" method="dialog">
+          <ul class="dialog__controls-container col">
+            <label for="task-title">
+              <input
+                class="dialog__title"
+                id="task-title"
+                type="text"
+                placeholder="Add task title"
+                autocomplete="off"
+              />
+            </label>
+            <label for="task-due-date">
+              <input
+                type="date"
+                id="task-due-date"
+                class="dialog__task-due-date"
+              />
+            </label>
+            <div class="dropup diaglog__select-task-list">
+              <button
+                data-dropup-btn
+                data-current-task-list="My Task"
+                class="dropup-btn"
+              >
+                My Task
+              </button>
+              <div class="dropup-content"></div>
+            </div>
+          </ul>
+          <div class="dialog__footer row">
+            <button data-cancel-btn class="modal__btn cancel">Cancel</button>
+            <button type="submit" data-save-btn class="modal__btn" disabled>
+              Save
             </button>
           </div>
-          <form class="modal__form col" method="dialog">
-            <ul class="dialog__controls-container col">
-              <label for="task-title">
-                <input
-                  class="dialog__title"
-                  id="task-title"
-                  type="text"
-                  placeholder="Add task title"
-                  autocomplete="off"
-                />
-              </label>
-              <label for="task-due-date">
-                <input
-                  type="date"
-                  id="task-due-date"
-                  class="dialog__task-due-date"
-                />
-              </label>
-              <div class="dropup diaglog__select-task-list">
-                <button
-                  data-dropup-btn
-                  data-current-task-list="My Task"
-                  class="dropup-btn"
-                >
-                  My Task
-                </button>
-                <div class="dropup-content"></div>
-              </div>
-            </ul>
-            <div class="dialog__footer row">
-              <button data-cancel-btn class="modal__btn cancel">Cancel</button>
-              <button type="submit" data-save-btn class="modal__btn" disabled>
-                Save
-              </button>
-            </div>
-          </form>
-        </dialog>
+        </form>
+      </dialog>
+      <aside class="side-menu col">
         <button class="create-task-btn">
           <span class="material-symbols-outlined">stylus</span>Create
         </button>
